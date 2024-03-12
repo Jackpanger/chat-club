@@ -16,19 +16,125 @@
         <module>chat-club-common</module>
         <module>chat-club-infra</module>
         <module>chat-club-starter</module>
-<!--        <module>chat-club-application/chat-club-application-controller</module>-->
-<!--        <module>chat-club-application/chat-club-application-job</module>-->
-<!--        <module>chat-club-application/chat-club-application-mq</module>-->
+        <!--        <module>chat-club-application/chat-club-application-controller</module>-->
+        <!--        <module>chat-club-application/chat-club-application-job</module>-->
+        <!--        <module>chat-club-application/chat-club-application-mq</module>-->
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>2.4.2</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
+    <properties>
+        <java.version>17</java.version>
+        <spring-boot-starter-web.version>3.2.3</spring-boot-starter-web.version>
+        <spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <druid.version>1.2.21</druid.version>
+        <mysql.version>8.0.33</mysql.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <fastjson.version>2.0.47</fastjson.version>
+        <guava.version>19.0</guava.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${jakarta.annotation-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!--chat club module-->
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-infra</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application-controller</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application-job</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-domain</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
