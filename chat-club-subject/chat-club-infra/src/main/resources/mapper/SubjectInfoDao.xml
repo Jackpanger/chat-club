@@ -20,7 +20,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SubjectInfoMap">
         select
-idsubject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parsecreated_bycreated_timeupdate_byupdate_timeis_deleted
+        id,subject_name,subject_difficult,settle_name,subject_type,subject_score,subject_parse,created_by,created_time,update_by,update_time,is_deleted
         from subject_info
         where id = #{id}
     </select>
@@ -28,7 +28,8 @@ idsubject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parse
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SubjectInfoMap">
         select
-idsubject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parsecreated_bycreated_timeupdate_byupdate_timeis_deleted
+        id,subject_name,subject_difficult,settle_name,subject_type,subject_score,subject_parse,created_by,created_time,update_by,update_time,is_deleted
+
         from subject_info
         <where>
             <if test="id != null">
@@ -117,23 +118,23 @@ idsubject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parse
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into subject_info(subject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parsecreated_bycreated_timeupdate_byupdate_timeis_deleted)
-        values (#{subjectName}#{subjectDifficult}#{settleName}#{subjectType}#{subjectScore}#{subjectParse}#{createdBy}#{createdTime}#{updateBy}#{updateTime}#{isDeleted})
+        insert into subject_info(subject_name,subject_difficult,settle_name,subject_type,subject_score,subject_parse,created_by,created_time,update_by,update_time,is_deleted)
+        values (#{subjectName},#{subjectDifficult},#{settleName},#{subjectType},#{subjectScore},#{subjectParse},#{createdBy},#{createdTime},#{updateBy},#{updateTime},#{isDeleted})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into subject_info(subject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parsecreated_bycreated_timeupdate_byupdate_timeis_deleted)
+        insert into subject_info(subject_name,subject_difficult,settle_name,subject_type,subject_score,subject_parse,created_by,created_time,update_by,update_time,is_deleted)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.subjectName}#{entity.subjectDifficult}#{entity.settleName}#{entity.subjectType}#{entity.subjectScore}#{entity.subjectParse}#{entity.createdBy}#{entity.createdTime}#{entity.updateBy}#{entity.updateTime}#{entity.isDeleted})
+        (#{entity.subjectName},#{entity.subjectDifficult},#{entity.settleName},#{entity.subjectType},#{entity.subjectScore},#{entity.subjectParse},#{entity.createdBy},#{entity.createdTime},#{entity.updateBy},#{entity.updateTime},#{entity.isDeleted})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into subject_info(subject_namesubject_difficultsettle_namesubject_typesubject_scoresubject_parsecreated_bycreated_timeupdate_byupdate_timeis_deleted)
+        insert into subject_info(subject_name,subject_difficult,settle_name,subject_type,subject_score,subject_parse,created_by,created_time,update_by,update_time,is_deleted)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.subjectName}#{entity.subjectDifficult}#{entity.settleName}#{entity.subjectType}#{entity.subjectScore}#{entity.subjectParse}#{entity.createdBy}#{entity.createdTime}#{entity.updateBy}#{entity.updateTime}#{entity.isDeleted})
+            (#{entity.subjectName},#{entity.subjectDifficult},#{entity.settleName},#{entity.subjectType},#{entity.subjectScore},#{entity.subjectParse},#{entity.createdBy},#{entity.createdTime},#{entity.updateBy},#{entity.updateTime},#{entity.isDeleted})
         </foreach>
         on duplicate key update
 subject_name = values(subject_name)subject_difficult = values(subject_difficult)settle_name = values(settle_name)subject_type = values(subject_type)subject_score = values(subject_score)subject_parse = values(subject_parse)created_by = values(created_by)created_time = values(created_time)update_by = values(update_by)update_time = values(update_time)is_deleted = values(is_deleted)

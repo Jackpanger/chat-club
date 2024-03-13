@@ -18,7 +18,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SubjectRadioMap">
         select
-idsubject_idoption_typeoption_contentis_correctcreated_bycreated_timeupdate_byupdate_timeis_deleted
+id,subject_id,option_type,option_content,is_correct,created_by,created_time,update_by,update_time,is_deleted
         from subject_radio
         where id = #{id}
     </select>
@@ -26,7 +26,8 @@ idsubject_idoption_typeoption_contentis_correctcreated_bycreated_timeupdate_byup
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SubjectRadioMap">
         select
-idsubject_idoption_typeoption_contentis_correctcreated_bycreated_timeupdate_byupdate_timeis_deleted
+        id,subject_id,option_type,option_content,is_correct,created_by,created_time,update_by,update_time,is_deleted
+
         from subject_radio
         <where>
             <if test="id != null">
@@ -103,8 +104,8 @@ idsubject_idoption_typeoption_contentis_correctcreated_bycreated_timeupdate_byup
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into subject_radio(subject_idoption_typeoption_contentis_correctcreated_bycreated_timeupdate_byupdate_timeis_deleted)
-        values (#{subjectId}#{optionType}#{optionContent}#{isCorrect}#{createdBy}#{createdTime}#{updateBy}#{updateTime}#{isDeleted})
+        insert into subject_radio(subject_id,option_type,option_content,is_correct,created_by,created_time,update_by,update_time,is_deleted)
+        values (#{subjectId},#{optionType},#{optionContent},#{isCorrect},#{createdBy},#{createdTime},#{updateBy},#{updateTime},#{isDeleted})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
