@@ -37,7 +37,7 @@ public class SubjectCategoryController {
             Preconditions.checkNotNull(subjectCategoryDTO.getCategoryType(), "CategoryType is null");
             Preconditions.checkArgument(!StringUtils.isBlank(subjectCategoryDTO.getCategoryName()), "CategoryName is null");
             Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "ParentId is null");
-            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToBO(subjectCategoryDTO);
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
             subjectCategoryDomainService.add(subjectCategoryBO);
             return Result.ok(true);
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class SubjectCategoryController {
             if (log.isInfoEnabled()) {
                 log.info("SubjectCategoryController.queryPrimaryCategory subjectCategoryDTO:{}", JSON.toJSONString(subjectCategoryDTO));
             }
-            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToBO(subjectCategoryDTO);
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategory(subjectCategoryBO);
             List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.INSTANCE.convertBOListToDtoList(subjectCategoryBOList);
             return Result.ok(subjectCategoryDTOList);
@@ -69,7 +69,7 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.queryCategoryByPrimary subjectCategoryDTO:{}", JSON.toJSONString(subjectCategoryDTO));
             }
             Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "category Id is null");
-            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToBO(subjectCategoryDTO);
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategory(subjectCategoryBO);
             List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.INSTANCE.convertBOListToDtoList(subjectCategoryBOList);
             return Result.ok(subjectCategoryDTOList);
@@ -86,7 +86,7 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.update subjectCategoryDTO:{}", JSON.toJSONString(subjectCategoryDTO));
             }
             Preconditions.checkNotNull(subjectCategoryDTO.getId(), "Id is null");
-            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToBO(subjectCategoryDTO);
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
             Boolean result = subjectCategoryDomainService.update(subjectCategoryBO);
             return Result.ok(result);
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.delete subjectCategoryDTO:{}", JSON.toJSONString(subjectCategoryDTO));
             }
             Preconditions.checkNotNull(subjectCategoryDTO.getId(), "Id is null");
-            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDtoToBO(subjectCategoryDTO);
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
             Boolean result = subjectCategoryDomainService.delete(subjectCategoryBO);
             return Result.ok(result);
         } catch (Exception e) {

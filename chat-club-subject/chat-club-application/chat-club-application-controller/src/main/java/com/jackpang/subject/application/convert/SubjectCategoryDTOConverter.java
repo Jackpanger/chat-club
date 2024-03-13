@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface SubjectCategoryDTOConverter {
     SubjectCategoryDTOConverter INSTANCE = Mappers.getMapper(SubjectCategoryDTOConverter.class);
-    SubjectCategoryBO convertDtoToBO(SubjectCategoryDTO subjectCategoryDTO);
+    SubjectCategoryBO convertDOtoToBO(SubjectCategoryDTO subjectCategoryDTO);
     List<SubjectCategoryDTO> convertBOListToDtoList(List<SubjectCategoryBO> SubjectCategoryBOList);
 }

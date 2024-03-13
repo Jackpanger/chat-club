@@ -6,34 +6,30 @@ import java.util.Date;
 import java.io.Serializable;
 
 /**
- * 题目分类(SubjectCategory)实体类
+ * 题目分类关系表(SubjectMapping)实体类
  *
  * @author makejava
- * @since 2024-03-09 22:20:50
+ * @since 2024-03-12 19:57:39
  */
 @Data
-public class SubjectCategory implements Serializable {
-    private static final long serialVersionUID = -87455756503381905L;
+public class SubjectMapping implements Serializable {
+    private static final long serialVersionUID = -21715810079444936L;
     /**
      * 主键
      */
     private Long id;
     /**
-     * 分类名称
+     * 题目id
      */
-    private String categoryName;
+    private Long subjectId;
     /**
-     * 分类类型
+     * 分类id
      */
-    private Integer categoryType;
+    private Long categoryId;
     /**
-     * 图标连接
+     * 标签id
      */
-    private String imageUrl;
-    /**
-     * 父级id
-     */
-    private Long parentId;
+    private Long labelId;
     /**
      * 创建人
      */
@@ -43,16 +39,16 @@ public class SubjectCategory implements Serializable {
      */
     private Date createdTime;
     /**
-     * 更新人
+     * 修改人
      */
     private String updateBy;
     /**
-     * 更新时间
+     * 修改时间
      */
     private Date updateTime;
-    /**
-     * 是否删除 0: 未删除 1: 已删除
-     */
+
     private Integer isDeleted;
+
+
 }
 
