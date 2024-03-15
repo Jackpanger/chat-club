@@ -15,8 +15,14 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="SubjectBriefMap">
-        select
-            id,subject_id,subject_answer,created_by,created_time,update_by,update_time,is_deleted
+        select id,
+               subject_id,
+               subject_answer,
+               created_by,
+               created_time,
+               update_by,
+               update_time,
+               is_deleted
         from subject_brief
         where id = #{id}
     </select>

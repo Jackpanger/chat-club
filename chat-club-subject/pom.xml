@@ -23,6 +23,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot-starter-web.version>3.2.3</spring-boot-starter-web.version>
         <spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
@@ -30,9 +31,10 @@
         <mysql.version>8.0.33</mysql.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <fastjson.version>2.0.47</fastjson.version>
-        <guava.version>19.0</guava.version>
+        <guava.version>32.0.1-jre</guava.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
+
     </properties>
 
 
@@ -100,6 +102,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-starter-web.version}</version>
             </dependency>
 
             <!--chat club module-->
