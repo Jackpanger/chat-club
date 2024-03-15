@@ -2,12 +2,13 @@ package com.jackpang.subject.infra.basic.mapper;
 
 import com.jackpang.subject.infra.basic.entity.SubjectInfo;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
  * 题目信息表(SubjectInfo)表数据库访问层
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:16:21
  */
 public interface SubjectInfoDao {
@@ -69,5 +70,8 @@ public interface SubjectInfoDao {
      */
     int deleteById(Long id);
 
+    int countByCondition(@Param("subjectInfo") SubjectInfo subjectInfo, @Param("categoryId") Long categoryId, @Param("labelId") Long labelId);
+
+    List<SubjectInfo> queryPage(@Param("subjectInfo") SubjectInfo subjectInfo, @Param("categoryId") Long categoryId, @Param("labelId") Long labelId, @Param("start") int start, @Param("pageSize") Integer pageSize);
 }
 

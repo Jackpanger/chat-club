@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 题目标签表(SubjectLabel)表服务实现类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 19:12:30
  */
 @Service("subjectLabelService")

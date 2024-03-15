@@ -6,10 +6,12 @@ import com.jackpang.subject.infra.basic.service.SubjectRadioService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 单选题信息表(SubjectRadio)表服务实现类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:16:49
  */
 @Service("subjectRadioService")
@@ -63,5 +65,15 @@ public class SubjectRadioServiceImpl implements SubjectRadioService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectRadioDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void batchInsert(List<SubjectRadio> subjectRadioList) {
+        subjectRadioDao.insertBatch(subjectRadioList);
+    }
+
+    @Override
+    public List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio) {
+        return this.subjectRadioDao.queryAllByLimit(subjectRadio);
     }
 }

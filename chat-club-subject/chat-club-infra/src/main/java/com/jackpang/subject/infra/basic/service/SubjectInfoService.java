@@ -2,10 +2,12 @@ package com.jackpang.subject.infra.basic.service;
 
 import com.jackpang.subject.infra.basic.entity.SubjectInfo;
 
+import java.util.List;
+
 /**
  * 题目信息表(SubjectInfo)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:16:22
  */
 public interface SubjectInfoService {
@@ -43,4 +45,7 @@ public interface SubjectInfoService {
      */
     boolean deleteById(Long id);
 
+    int countByCondition(SubjectInfo subjectInfo, Long categoryId, Long labelId);
+
+    List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long categoryId, Long labelId, int start, Integer pageSize);
 }

@@ -2,13 +2,16 @@ package com.jackpang.subject.infra.basic.service;
 
 import com.jackpang.subject.infra.basic.entity.SubjectJudge;
 
+import java.util.List;
+
 /**
  * 判断题(SubjectJudge)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:11
  */
 public interface SubjectJudgeService {
+
 
     /**
      * 通过ID查询单条数据
@@ -18,6 +21,7 @@ public interface SubjectJudgeService {
      */
     SubjectJudge queryById(Long id);
 
+    List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge);
 
     /**
      * 新增数据

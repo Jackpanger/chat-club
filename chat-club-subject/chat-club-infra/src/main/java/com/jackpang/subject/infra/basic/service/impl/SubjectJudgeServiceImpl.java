@@ -6,10 +6,12 @@ import com.jackpang.subject.infra.basic.service.SubjectJudgeService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 判断题(SubjectJudge)表服务实现类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:11
  */
 @Service("subjectJudgeService")
@@ -28,6 +30,10 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
         return this.subjectJudgeDao.queryById(id);
     }
 
+    @Override
+    public List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge) {
+        return this.subjectJudgeDao.queryAllByLimit(subjectJudge);
+    }
 
 
     /**

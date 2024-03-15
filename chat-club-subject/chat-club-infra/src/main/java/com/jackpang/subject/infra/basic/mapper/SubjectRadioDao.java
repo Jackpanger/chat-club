@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 单选题信息表(SubjectRadio)表数据库访问层
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:16:49
  */
 public interface SubjectRadioDao {
@@ -69,5 +69,6 @@ public interface SubjectRadioDao {
      */
     int deleteById(Long id);
 
+    List<SubjectRadio> queryAllByLimit(SubjectRadio subjectRadio);
 }
 

@@ -5,10 +5,13 @@ import com.jackpang.subject.infra.basic.mapper.SubjectMultipleDao;
 import com.jackpang.subject.infra.basic.service.SubjectMultipleService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务实现类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:28
  */
 @Service("subjectMultipleService")
@@ -62,5 +65,15 @@ public class SubjectMultipleServiceImpl implements SubjectMultipleService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectMultipleDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void insertBatch(List<SubjectMultiple> subjectMultipleList) {
+        subjectMultipleDao.insertBatch(subjectMultipleList);
+    }
+
+    @Override
+    public List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple) {
+        return this.subjectMultipleDao.queryAllByLimit(subjectMultiple);
     }
 }

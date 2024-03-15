@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 单选题信息表(SubjectRadio)实体类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:16:49
  */
 @Data

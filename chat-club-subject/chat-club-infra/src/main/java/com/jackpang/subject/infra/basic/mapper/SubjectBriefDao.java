@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 简答题(SubjectBrief)表数据库访问层
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:54
  */
 public interface SubjectBriefDao {
@@ -19,6 +19,8 @@ public interface SubjectBriefDao {
      * @return 实例对象
      */
     SubjectBrief queryById(Long id);
+
+    List<SubjectBrief> queryAllByLimit(SubjectBrief subjectBrief);
 
     /**
      * 统计总行数

@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public enum IsDeletedFlagEnum {
     DELETED(1, "deleted"),
-    UNDELETED(0, "undeleted");
+    NOT_DELETED(0, "undeleted");
 
     private int code;
     private String desc;

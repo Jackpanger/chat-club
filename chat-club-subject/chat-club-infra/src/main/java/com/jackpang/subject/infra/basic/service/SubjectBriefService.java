@@ -2,10 +2,12 @@ package com.jackpang.subject.infra.basic.service;
 
 import com.jackpang.subject.infra.basic.entity.SubjectBrief;
 
+import java.util.List;
+
 /**
  * 简答题(SubjectBrief)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:54
  */
 public interface SubjectBriefService {
@@ -43,4 +45,5 @@ public interface SubjectBriefService {
      */
     boolean deleteById(Long id);
 
+    List<SubjectBrief> queryByCondition(SubjectBrief subjectBrief);
 }

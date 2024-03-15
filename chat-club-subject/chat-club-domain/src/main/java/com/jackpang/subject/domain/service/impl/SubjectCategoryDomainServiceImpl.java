@@ -2,7 +2,7 @@ package com.jackpang.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.jackpang.subject.common.enums.IsDeletedFlagEnum;
-import com.jackpang.subject.convert.SubjectCategoryConverter;
+import com.jackpang.subject.domain.convert.SubjectCategoryConverter;
 import com.jackpang.subject.domain.entity.SubjectCategoryBO;
 import com.jackpang.subject.domain.service.SubjectCategoryDomainService;
 import com.jackpang.subject.infra.basic.entity.SubjectCategory;
@@ -29,7 +29,7 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     public void add(SubjectCategoryBO SubjectCategoryBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.add SubjectCategoryBO:{}", JSON.toJSONString(SubjectCategoryBO));
+            log.info("SubjectCategoryDomainServiceImpl.add SubjectCategoryBO:{}", JSON.toJSONString(SubjectCategoryBO));
         }
         SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE.convertBoToCategory(SubjectCategoryBO);
         subjectCategoryService.insert(subjectCategory);
@@ -38,11 +38,11 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     public List<SubjectCategoryBO> queryCategory(SubjectCategoryBO subjectCategoryBO) {
         SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE.convertBoToCategory(subjectCategoryBO);
-        subjectCategory.setIsDeleted(IsDeletedFlagEnum.UNDELETED.getCode());
+        subjectCategory.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.queryCategory(subjectCategory);
         List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryConverter.INSTANCE.convertCategoryListToBoList(subjectCategoryList);
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.queryPrimaryCategory SubjectCategoryBOList:{}", JSON.toJSONString(subjectCategoryBOList));
+            log.info("SubjectCategoryDomainServiceImpl.queryCategory SubjectCategoryBOList:{}", JSON.toJSONString(subjectCategoryBOList));
         }
         return subjectCategoryBOList;
 

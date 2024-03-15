@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 题目分类(SubjectCategory)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-09 22:20:51
  */
 public interface SubjectCategoryService {

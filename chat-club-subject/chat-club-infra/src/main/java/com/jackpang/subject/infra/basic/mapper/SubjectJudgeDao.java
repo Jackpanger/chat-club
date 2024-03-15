@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 判断题(SubjectJudge)表数据库访问层
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:10
  */
 public interface SubjectJudgeDao {
@@ -69,5 +69,6 @@ public interface SubjectJudgeDao {
      */
     int deleteById(Long id);
 
+    List<SubjectJudge> queryAllByLimit(SubjectJudge subjectJudge);
 }
 

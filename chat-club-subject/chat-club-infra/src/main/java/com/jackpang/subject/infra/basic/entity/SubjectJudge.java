@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 判断题(SubjectJudge)实体类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:10
  */
 @Data

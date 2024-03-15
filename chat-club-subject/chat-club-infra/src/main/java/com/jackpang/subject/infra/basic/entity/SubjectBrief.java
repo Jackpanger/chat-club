@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 简答题(SubjectBrief)实体类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:54
  */
 @Data
@@ -21,7 +21,7 @@ public class SubjectBrief implements Serializable {
 /**
      * 题目id
      */
-    private Integer subjectId;
+    private Long subjectId;
 /**
      * 题目答案
      */

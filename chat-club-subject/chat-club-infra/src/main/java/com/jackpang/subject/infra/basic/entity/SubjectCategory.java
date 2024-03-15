@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 题目分类(SubjectCategory)实体类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-09 22:20:50
  */
 @Data

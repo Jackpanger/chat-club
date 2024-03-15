@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 题目分类关系表(SubjectMapping)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 19:57:39
  */
 public interface SubjectMappingService {
@@ -52,4 +52,6 @@ public interface SubjectMappingService {
      * @return 对象列表
      */
     List<SubjectMapping> queryLabelId(SubjectMapping subjectMapping);
+
+    void insertBatch(List<SubjectMapping> subjectMappings);
 }

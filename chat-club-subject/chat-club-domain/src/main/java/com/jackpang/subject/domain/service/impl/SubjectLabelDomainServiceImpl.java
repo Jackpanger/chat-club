@@ -3,7 +3,7 @@ package com.jackpang.subject.domain.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.jackpang.subject.common.enums.IsDeletedFlagEnum;
-import com.jackpang.subject.convert.SubjectLabelConverter;
+import com.jackpang.subject.domain.convert.SubjectLabelConverter;
 import com.jackpang.subject.domain.entity.SubjectLabelBO;
 import com.jackpang.subject.domain.service.SubjectLabelDomainService;
 import com.jackpang.subject.infra.basic.entity.SubjectLabel;
@@ -37,17 +37,17 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     @Override
     public Boolean add(SubjectLabelBO SubjectLabelBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.add SubjectLabelBO:{}", JSON.toJSONString(SubjectLabelBO));
+            log.info("SubjectLabelDomainServiceImpl.add SubjectLabelBO:{}", JSON.toJSONString(SubjectLabelBO));
         }
         SubjectLabel subjectLabel = SubjectLabelConverter.INSTANCE.convertBoToLabel(SubjectLabelBO);
-        subjectLabel.setIsDeleted(IsDeletedFlagEnum.UNDELETED.getCode());
+        subjectLabel.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         return subjectLabelService.insert(subjectLabel) > 0;
     }
 
     @Override
     public Boolean update(SubjectLabelBO subjectLabelBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.update SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
+            log.info("SubjectLabelDomainServiceImpl.update SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
         }
         SubjectLabel subjectLabel = SubjectLabelConverter.INSTANCE.convertBoToLabel(subjectLabelBO);
         return subjectLabelService.update(subjectLabel) > 0;
@@ -56,7 +56,7 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     @Override
     public Boolean delete(SubjectLabelBO subjectLabelBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.delete SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
+            log.info("SubjectLabelDomainServiceImpl.delete SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
         }
         SubjectLabel subjectLabel = SubjectLabelConverter.INSTANCE.convertBoToLabel(subjectLabelBO);
         subjectLabel.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
@@ -66,12 +66,12 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     @Override
     public List<SubjectLabelBO> queryLabelByCategoryId(SubjectLabelBO subjectLabelBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryController.queryLabelByCategoryId SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
+            log.info("SubjectLabelDomainServiceImpl.queryLabelByCategoryId SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
         }
         Long categoryId = subjectLabelBO.getCategoryId();
         SubjectMapping subjectMapping = new SubjectMapping();
         subjectMapping.setCategoryId(categoryId);
-        subjectMapping.setIsDeleted(IsDeletedFlagEnum.UNDELETED.getCode());
+        subjectMapping.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         List<SubjectMapping> subjectMappingList = subjectMappingService.queryLabelId(subjectMapping);
         if (CollectionUtils.isEmpty(subjectMappingList)) {
             return Collections.emptyList();

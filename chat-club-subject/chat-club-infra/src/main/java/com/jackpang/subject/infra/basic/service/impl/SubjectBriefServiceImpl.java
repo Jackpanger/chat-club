@@ -6,11 +6,13 @@ import com.jackpang.subject.infra.basic.service.SubjectBriefService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * 简答题(SubjectBrief)表服务实现类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:54
  */
 @Service("subjectBriefService")
@@ -63,5 +65,10 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectBriefDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<SubjectBrief> queryByCondition(SubjectBrief subjectBrief) {
+        return this.subjectBriefDao.queryAllByLimit(subjectBrief);
     }
 }

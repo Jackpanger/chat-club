@@ -60,7 +60,6 @@ id,subject_id,option_type,option_content,is_correct,created_by,created_time,upda
                 and is_deleted = #{isDeleted}
             </if>
         </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--统计总行数-->
@@ -111,7 +110,7 @@ id,subject_id,option_type,option_content,is_correct,created_by,created_time,upda
         insert into subject_multiple(subject_id,option_type,option_content,is_correct,created_by,created_time,update_by,update_time,is_deleted)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.subjectId}#{entity.optionType}#{entity.optionContent}#{entity.isCorrect}#{entity.createdBy}#{entity.createdTime}#{entity.updateBy}#{entity.updateTime}#{entity.isDeleted})
+        (#{entity.subjectId},#{entity.optionType},#{entity.optionContent},#{entity.isCorrect},#{entity.createdBy},#{entity.createdTime},#{entity.updateBy},#{entity.updateTime},#{entity.isDeleted})
         </foreach>
     </insert>
 

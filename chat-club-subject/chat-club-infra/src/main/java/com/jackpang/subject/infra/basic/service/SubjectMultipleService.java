@@ -2,10 +2,12 @@ package com.jackpang.subject.infra.basic.service;
 
 import com.jackpang.subject.infra.basic.entity.SubjectMultiple;
 
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务接口
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:28
  */
 public interface SubjectMultipleService {
@@ -42,5 +44,9 @@ public interface SubjectMultipleService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    void insertBatch(List<SubjectMultiple> subjectMultipleList);
+
+    List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple);
 
 }

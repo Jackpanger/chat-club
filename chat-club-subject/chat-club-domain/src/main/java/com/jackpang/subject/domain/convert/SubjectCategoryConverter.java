@@ -1,4 +1,4 @@
-package com.jackpang.subject.convert;
+package com.jackpang.subject.domain.convert;
 
 import com.jackpang.subject.domain.entity.SubjectCategoryBO;
 import com.jackpang.subject.infra.basic.entity.SubjectCategory;

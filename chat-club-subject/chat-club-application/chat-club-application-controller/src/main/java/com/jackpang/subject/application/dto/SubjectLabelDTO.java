@@ -3,12 +3,11 @@ package com.jackpang.subject.application.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 题目标签表(SubjectLabel)实体类
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 19:12:29
  */
 @Data

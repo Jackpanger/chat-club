@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 多选题信息表(SubjectMultiple)表数据库访问层
  *
- * @author makejava
+ * @author jackpang
  * @since 2024-03-12 23:17:27
  */
 public interface SubjectMultipleDao {
@@ -69,5 +69,6 @@ public interface SubjectMultipleDao {
      */
     int deleteById(Long id);
 
+    List<SubjectMultiple> queryAllByLimit(SubjectMultiple subjectMultiple);
 }
 
