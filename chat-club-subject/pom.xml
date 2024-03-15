@@ -16,9 +16,9 @@
         <module>chat-club-common</module>
         <module>chat-club-infra</module>
         <module>chat-club-starter</module>
-        <!--        <module>chat-club-application/chat-club-application-controller</module>-->
-        <!--        <module>chat-club-application/chat-club-application-job</module>-->
-        <!--        <module>chat-club-application/chat-club-application-mq</module>-->
+        <module>chat-club-application/chat-club-application-controller</module>
+        <module>chat-club-application/chat-club-application-job</module>
+        <module>chat-club-application/chat-club-application-mq</module>
     </modules>
 
     <properties>
