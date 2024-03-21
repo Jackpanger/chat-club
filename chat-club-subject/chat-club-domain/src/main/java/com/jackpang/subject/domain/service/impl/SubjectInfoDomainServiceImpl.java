@@ -15,7 +15,7 @@ import com.jackpang.subject.infra.basic.entity.SubjectMapping;
 import com.jackpang.subject.infra.basic.service.SubjectInfoService;
 import com.jackpang.subject.infra.basic.service.SubjectLabelService;
 import com.jackpang.subject.infra.basic.service.SubjectMappingService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

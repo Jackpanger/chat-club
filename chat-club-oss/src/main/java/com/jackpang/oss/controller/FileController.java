@@ -1,8 +1,10 @@
 package com.jackpang.oss.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.jackpang.oss.adapter.FileService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +20,8 @@ import java.util.List;
 public class FileController {
     @Resource
     private FileService fileService;
+    @NacosValue("${storage.service.type}")
+    private String storageType;
 
     @RequestMapping("/testGetAllBuckets")
     @SneakyThrows
@@ -25,4 +29,18 @@ public class FileController {
         List<String> allBucket = fileService.getAllBucket();
         return allBucket.get(0);
     }
+
+    @RequestMapping("/testNacos")
+    @SneakyThrows
+    public String testNacos() throws Exception {
+        return storageType;
+    }
+//    @Value(value = "${storage.service.type}")
+//    private String useLocalCache;
+//
+//    @RequestMapping("/test")
+//    public String test() {
+//        String useLocalCache1 = useLocalCache;
+//        return useLocalCache1;
+//    }
 }

@@ -1,7 +1,7 @@
 package com.jackpang.subject.domain.handler.subject;
 
 import com.jackpang.subject.common.enums.SubjectInfoTypeEnum;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 

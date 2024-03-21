@@ -7,7 +7,7 @@ import com.jackpang.subject.application.dto.SubjectLabelDTO;
 import com.jackpang.subject.common.entity.Result;
 import com.jackpang.subject.domain.entity.SubjectLabelBO;
 import com.jackpang.subject.domain.service.SubjectLabelDomainService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

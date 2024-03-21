@@ -7,11 +7,14 @@ import com.jackpang.subject.application.dto.SubjectCategoryDTO;
 import com.jackpang.subject.common.entity.Result;
 import com.jackpang.subject.domain.entity.SubjectCategoryBO;
 import com.jackpang.subject.domain.service.SubjectCategoryDomainService;
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 

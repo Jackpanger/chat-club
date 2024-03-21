@@ -3,7 +3,7 @@ package com.jackpang.subject.infra.basic.service.impl;
 import com.jackpang.subject.infra.basic.entity.SubjectJudge;
 import com.jackpang.subject.infra.basic.mapper.SubjectJudgeDao;
 import com.jackpang.subject.infra.basic.service.SubjectJudgeService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

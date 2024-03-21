@@ -1,11 +1,29 @@
 Server:
   port: 4000
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
 
 minio:
   url: http://47.92.163.88:9000
   accessKey: minioadmin
   secretKey: minioadmin
 
-storage:
-  service:
-    type: minio
+#spring:
+#  application:
+#    name: chat-club-oss
+#  profiles:
+#      active: dev
+#  config:
+#    import:
+#      - nacos:${spring.application.name}-${spring.profiles.active}.yaml
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 47.92.163.88:8848
+#        prefix: ${spring.application.name}
+#        namespace:
+#        group: DEFAULT_GROUP
+#        file-extension: yaml

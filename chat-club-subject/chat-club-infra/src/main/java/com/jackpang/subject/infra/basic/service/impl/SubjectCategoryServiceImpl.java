@@ -6,7 +6,7 @@ import com.jackpang.subject.infra.basic.mapper.SubjectCategoryDao;
 import com.jackpang.subject.infra.basic.service.SubjectCategoryService;
 
 
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
