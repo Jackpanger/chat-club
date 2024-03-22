@@ -11,3 +11,4 @@ spring:
         group: DEFAULT_GROUP
         namespace:
         file-extension: yaml
+        config-long-poll-timeout: 30000  # 长轮询超时时间，默认30000毫秒

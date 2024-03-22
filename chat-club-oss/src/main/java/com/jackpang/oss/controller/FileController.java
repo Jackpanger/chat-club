@@ -20,8 +20,10 @@ import java.util.List;
 public class FileController {
     @Resource
     private FileService fileService;
-    @NacosValue("${storage.service.type}")
+    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
     private String storageType;
+//    @Value(value = "${storage.service.type}")
+//    private String storageType;
 
     @RequestMapping("/testGetAllBuckets")
     @SneakyThrows
@@ -31,7 +33,6 @@ public class FileController {
     }
 
     @RequestMapping("/testNacos")
-    @SneakyThrows
     public String testNacos() throws Exception {
         return storageType;
     }
