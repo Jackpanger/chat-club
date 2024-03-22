@@ -2,7 +2,7 @@ package com.jackpang.oss.adapter;
 
 import com.jackpang.oss.entity.FileInfo;
 import com.jackpang.oss.util.MinioUtil;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -40,6 +40,6 @@ public class DruidEncryptUtil {
 
     public static void main(String[] args) throws Exception {
         encrypt("Xcdlnrhhz2");
-        System.out.println(ConfigTools.decrypt("MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOksceSqs62qpEUCD17wMDsIvr+BL2lrQ37AHQ8L03VPlwxnlO84JwXWRR59ODQvUmxWYFVG39QURsd3HuZa0JMCAwEAAQ==","TRsMw8bnGU+vfcadWcIvafKdEQ342uoco+ywgpQ3LXkLwo+ZIQZ20wvK9PBp/vnjtzh8Gz7VayqcJq+kG+JTiA=="));
+//        System.out.println(ConfigTools.decrypt("MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOksceSqs62qpEUCD17wMDsIvr+BL2lrQ37AHQ8L03VPlwxnlO84JwXWRR59ODQvUmxWYFVG39QURsd3HuZa0JMCAwEAAQ==","TRsMw8bnGU+vfcadWcIvafKdEQ342uoco+ywgpQ3LXkLwo+ZIQZ20wvK9PBp/vnjtzh8Gz7VayqcJq+kG+JTiA=="));
     }
 }
