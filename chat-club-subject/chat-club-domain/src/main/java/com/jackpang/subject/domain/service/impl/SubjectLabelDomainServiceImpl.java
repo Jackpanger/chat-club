@@ -2,12 +2,15 @@ package com.jackpang.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.jackpang.subject.common.enums.CategoryTypeEnum;
 import com.jackpang.subject.common.enums.IsDeletedFlagEnum;
 import com.jackpang.subject.domain.convert.SubjectLabelConverter;
 import com.jackpang.subject.domain.entity.SubjectLabelBO;
 import com.jackpang.subject.domain.service.SubjectLabelDomainService;
+import com.jackpang.subject.infra.basic.entity.SubjectCategory;
 import com.jackpang.subject.infra.basic.entity.SubjectLabel;
 import com.jackpang.subject.infra.basic.entity.SubjectMapping;
+import com.jackpang.subject.infra.basic.service.SubjectCategoryService;
 import com.jackpang.subject.infra.basic.service.SubjectLabelService;
 import com.jackpang.subject.infra.basic.service.SubjectMappingService;
 import jakarta.annotation.Resource;
@@ -33,6 +36,8 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     private SubjectLabelService subjectLabelService;
     @Resource
     private SubjectMappingService subjectMappingService;
+    @Resource
+    private SubjectCategoryService subjectCategoryService;
 
     @Override
     public Boolean add(SubjectLabelBO SubjectLabelBO) {
@@ -69,6 +74,15 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
             log.info("SubjectLabelDomainServiceImpl.queryLabelByCategoryId SubjectLabelBO:{}", JSON.toJSONString(subjectLabelBO));
         }
         Long categoryId = subjectLabelBO.getCategoryId();
+        SubjectCategory subjectCategory = subjectCategoryService.queryById(categoryId);
+        if (CategoryTypeEnum.Primary.getCode() == (subjectCategory.getCategoryType())) {
+            SubjectLabel subjectLabel = new SubjectLabel();
+            subjectLabel.setCategoryId(categoryId);
+            subjectLabel.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
+            List<SubjectLabel> labelList = subjectLabelService.queryByCondition(subjectLabel);
+            return SubjectLabelConverter.INSTANCE.convertLabelListToBoList(labelList);
+        }
+
         SubjectMapping subjectMapping = new SubjectMapping();
         subjectMapping.setCategoryId(categoryId);
         subjectMapping.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
