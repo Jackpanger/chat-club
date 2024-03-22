@@ -7,7 +7,7 @@ import com.jackpang.subject.domain.entity.SubjectInfoBO;
 import com.jackpang.subject.domain.entity.SubjectOptionBO;
 import com.jackpang.subject.infra.basic.entity.SubjectBrief;
 import com.jackpang.subject.infra.basic.service.SubjectBriefService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

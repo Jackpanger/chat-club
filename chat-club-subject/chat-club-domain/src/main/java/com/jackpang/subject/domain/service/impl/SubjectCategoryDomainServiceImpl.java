@@ -7,7 +7,7 @@ import com.jackpang.subject.domain.entity.SubjectCategoryBO;
 import com.jackpang.subject.domain.service.SubjectCategoryDomainService;
 import com.jackpang.subject.infra.basic.entity.SubjectCategory;
 import com.jackpang.subject.infra.basic.service.SubjectCategoryService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

@@ -1,13 +1,11 @@
 package com.jackpang.oss.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.jackpang.oss.adapter.FileService;
-import javax.annotation.Resource;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,8 +18,8 @@ import java.util.List;
 public class FileController {
     @Resource
     private FileService fileService;
-    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
-    private String storageType;
+//    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
+//    private String storageType;
 //    @Value(value = "${storage.service.type}")
 //    private String storageType;
 
@@ -32,10 +30,10 @@ public class FileController {
         return allBucket.get(0);
     }
 
-    @RequestMapping("/testNacos")
-    public String testNacos() throws Exception {
-        return storageType;
-    }
+//    @RequestMapping("/testNacos")
+//    public String testNacos() throws Exception {
+//        return storageType;
+//    }
 //    @Value(value = "${storage.service.type}")
 //    private String useLocalCache;
 //

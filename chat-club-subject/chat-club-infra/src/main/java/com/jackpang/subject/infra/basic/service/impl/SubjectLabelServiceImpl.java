@@ -4,7 +4,7 @@ package com.jackpang.subject.infra.basic.service.impl;
 import com.jackpang.subject.infra.basic.entity.SubjectLabel;
 import com.jackpang.subject.infra.basic.mapper.SubjectLabelDao;
 import com.jackpang.subject.infra.basic.service.SubjectLabelService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

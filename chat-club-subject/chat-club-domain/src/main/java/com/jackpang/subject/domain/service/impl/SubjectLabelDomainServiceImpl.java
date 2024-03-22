@@ -10,7 +10,7 @@ import com.jackpang.subject.infra.basic.entity.SubjectLabel;
 import com.jackpang.subject.infra.basic.entity.SubjectMapping;
 import com.jackpang.subject.infra.basic.service.SubjectLabelService;
 import com.jackpang.subject.infra.basic.service.SubjectMappingService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

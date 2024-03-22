@@ -4,8 +4,10 @@ import com.jackpang.oss.entity.FileInfo;
 import io.minio.*;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
+
+import jakarta.annotation.Resource;
+
 
 import java.io.InputStream;
 import java.util.LinkedList;

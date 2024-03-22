@@ -16,29 +16,26 @@
 
     <properties>
         <revision>1.0-SNAPSHOT</revision>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <maven.compiler.compilerVersion>8</maven.compiler.compilerVersion>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot-starter-web.version>2.4.2</spring-boot-starter-web.version>
-<!--        <spring-boot-maven-plugin.version>3.2.3</spring-boot-maven-plugin.version>-->
-        <spring-boot-dependencies.version>2.4.2</spring-boot-dependencies.version>
-        <mybatis-plus.version>3.4.0</mybatis-plus.version>
-        <druid.version>1.2.21</druid.version>
+        <spring-boot-starter-web.version>3.2.3</spring-boot-starter-web.version>
+        <spring-boot-maven-plugin.version>3.2.3</spring-boot-maven-plugin.version>
+        <spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <druid.version>1.2.22</druid.version>
         <mysql.version>8.0.33</mysql.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <fastjson.version>1.2.24</fastjson.version>
-        <guava.version>19.0</guava.version>
-        <commons-lang3.version>3.11</commons-lang3.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <fastjson.version>2.0.47</fastjson.version>
+        <guava.version>32.0.1-jre</guava.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
-        <minio.version>8.2.0</minio.version>
-        <lombok.version>1.18.16</lombok.version>
-        <nacos-springcloud-config.version>2.2.6.RELEASE</nacos-springcloud-config.version>
-<!--        <spring-cloud-bootstrap.version>4.1.1</spring-cloud-bootstrap.version>-->
-        <spring-cloud-dependencies.version>2020.0.6</spring-cloud-dependencies.version>
-        <log4j2.version>2.3.8.RELEASE</log4j2.version>
-        <nacos-config-spring-boot-starter.version>0.2.11</nacos-config-spring-boot-starter.version>
+        <minio.version>8.5.9</minio.version>
+        <lombok.version>1.18.32</lombok.version>
+        <nacos-springcloud-config.version>2023.0.0.0-RC1</nacos-springcloud-config.version>
+        <spring-cloud-bootstrap.version>4.1.1</spring-cloud-bootstrap.version>
+        <spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
+        <log4j2.version>3.2.4</log4j2.version>
+        <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
         <spring-cloud-alibaba-dependencies.version>2021.1</spring-cloud-alibaba-dependencies.version>
     </properties>
 
@@ -69,12 +66,12 @@
 
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
             <dependency>

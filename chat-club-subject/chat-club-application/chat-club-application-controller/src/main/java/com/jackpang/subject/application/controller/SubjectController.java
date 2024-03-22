@@ -11,7 +11,7 @@ import com.jackpang.subject.common.entity.Result;
 import com.jackpang.subject.domain.entity.SubjectAnswerBO;
 import com.jackpang.subject.domain.entity.SubjectInfoBO;
 import com.jackpang.subject.domain.service.SubjectInfoDomainService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;

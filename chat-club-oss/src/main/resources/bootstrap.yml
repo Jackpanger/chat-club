@@ -12,5 +12,5 @@ spring:
         namespace:
         file-extension: yaml
         config-long-poll-timeout: 30000  # 长轮询超时时间，默认30000毫秒
-      discovery:
-        server-addr: ${spring.cloud.nacos.config.server-addr}
+#      discovery:
+#        server-addr: ${spring.cloud.nacos.config.server-addr}

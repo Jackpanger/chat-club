@@ -4,6 +4,7 @@ import com.jackpang.oss.entity.FileInfo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,9 @@ public class AliStorageAdapter implements StorageAdapter {
 
     @Override
     public List<String> getAllBucket() {
-        return null;
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("sd");
+        return strings;
     }
 
     @Override

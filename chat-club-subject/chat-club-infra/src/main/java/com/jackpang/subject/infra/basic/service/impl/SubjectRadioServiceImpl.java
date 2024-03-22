@@ -3,7 +3,7 @@ package com.jackpang.subject.infra.basic.service.impl;
 import com.jackpang.subject.infra.basic.entity.SubjectRadio;
 import com.jackpang.subject.infra.basic.mapper.SubjectRadioDao;
 import com.jackpang.subject.infra.basic.service.SubjectRadioService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

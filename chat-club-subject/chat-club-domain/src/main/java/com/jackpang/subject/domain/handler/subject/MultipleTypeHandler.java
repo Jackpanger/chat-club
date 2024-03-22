@@ -8,7 +8,7 @@ import com.jackpang.subject.domain.entity.SubjectInfoBO;
 import com.jackpang.subject.domain.entity.SubjectOptionBO;
 import com.jackpang.subject.infra.basic.entity.SubjectMultiple;
 import com.jackpang.subject.infra.basic.service.SubjectMultipleService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
