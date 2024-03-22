@@ -1,15 +1,12 @@
-Server:
-  port: 4000
+#server:
+#  port: 4000
 #management:
 #  endpoints:
 #    web:
 #      exposure:
 #        include: "*"
 
-minio:
-  url: http://47.92.163.88:9000
-  accessKey: minioadmin
-  secretKey: minioadmin
+
 
 #spring:
 #  application:
