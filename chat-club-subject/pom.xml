@@ -19,8 +19,42 @@
         <module>chat-club-common</module>
         <module>chat-club-infra</module>
         <module>chat-club-starter</module>
-        <module>chat-club-application/chat-club-application-controller</module>
-        <module>chat-club-application/chat-club-application-job</module>
-        <module>chat-club-application/chat-club-application-mq</module>
+<!--        <module>chat-club-application/chat-club-application-controller</module>-->
+<!--        <module>chat-club-application/chat-club-application-job</module>-->
+<!--        <module>chat-club-application/chat-club-application-mq</module>-->
     </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-infra</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application-controller</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application-job</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-application</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jackpang</groupId>
+                <artifactId>chat-club-domain</artifactId>
+                <version>${revision}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

@@ -14,15 +14,6 @@
         <module>chat-club-subject</module>
         <module>chat-club-auth</module>
         <module>chat-club-gateway</module>
-        <module>chat-club-auth/chat-club-auth-application</module>
-        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-controller</module>
-        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-job</module>
-        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-mq</module>
-        <module>chat-club-auth/chat-club-auth-common</module>
-        <module>chat-club-auth/chat-club-auth-domain</module>
-        <module>chat-club-auth/chat-club-auth-infra</module>
-        <module>chat-club-auth/chat-club-auth-starter</module>
-        <module>chat-club-auth/chat-club-auth-api</module>
     </modules>
 
     <properties>
@@ -160,38 +151,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-bootstrap</artifactId>
                 <version>${spring-cloud-bootstrap.version}</version>
-            </dependency>
-
-            <!--chat club module-->
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-common</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-infra</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-application-controller</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-application-job</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-application</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.jackpang</groupId>
-                <artifactId>chat-club-domain</artifactId>
-                <version>${revision}</version>
             </dependency>
 
 
