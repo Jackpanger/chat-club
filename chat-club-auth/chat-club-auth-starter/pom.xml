@@ -19,6 +19,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.jackpang</groupId>
+            <artifactId>chat-club-auth-application-controller</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jackpang</groupId>
+            <artifactId>chat-club-auth-infra</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

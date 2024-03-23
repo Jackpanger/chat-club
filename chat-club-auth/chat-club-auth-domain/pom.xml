@@ -8,4 +8,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>chat-club-auth-domain</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.jackpang</groupId>
+            <artifactId>chat-club-auth-infra</artifactId>
+        </dependency>
+    </dependencies>
 </project>
