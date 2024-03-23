@@ -28,7 +28,7 @@
         <dependencies>
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
 

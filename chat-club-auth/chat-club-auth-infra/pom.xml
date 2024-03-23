@@ -33,9 +33,5 @@
             <groupId>com.jackpang</groupId>
             <artifactId>chat-club-auth-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.jackpang</groupId>
-            <artifactId>chat-club-auth-common</artifactId>
-        </dependency>
     </dependencies>
 </project>
