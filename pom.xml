@@ -12,6 +12,17 @@
     <modules>
         <module>chat-club-oss</module>
         <module>chat-club-subject</module>
+        <module>chat-club-auth</module>
+        <module>chat-club-gateway</module>
+        <module>chat-club-auth/chat-club-auth-application</module>
+        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-controller</module>
+        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-job</module>
+        <module>chat-club-auth/chat-club-auth-application/chat-club-auth-application-mq</module>
+        <module>chat-club-auth/chat-club-auth-common</module>
+        <module>chat-club-auth/chat-club-auth-domain</module>
+        <module>chat-club-auth/chat-club-auth-infra</module>
+        <module>chat-club-auth/chat-club-auth-starter</module>
+        <module>chat-club-auth/chat-club-auth-api</module>
     </modules>
 
     <properties>
