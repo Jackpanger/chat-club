@@ -8,6 +8,4 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>chat-club-auth-application-job</artifactId>
-    <name>Archetype - chat-club-auth-application-job</name>
-    <url>http://maven.apache.org</url>
 </project>

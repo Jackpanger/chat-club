@@ -9,6 +9,9 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>chat-club-auth-application</artifactId>
-    <name>Archetype - chat-club-auth-application</name>
-    <url>http://maven.apache.org</url>
+    <modules>
+        <module>chat-club-auth-application-controller</module>
+        <module>chat-club-auth-application-job</module>
+        <module>chat-club-auth-application-mq</module>
+    </modules>
 </project>

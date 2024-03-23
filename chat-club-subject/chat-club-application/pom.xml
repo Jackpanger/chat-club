@@ -8,4 +8,9 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>chat-club-application</artifactId>
+    <modules>
+        <module>chat-club-application-controller</module>
+        <module>chat-club-application-job</module>
+        <module>chat-club-application-mq</module>
+    </modules>
 </project>
