@@ -28,7 +28,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     @Override
     public Boolean register(AuthUserBO authUserBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryDomainServiceImpl.add SubjectCategoryBO:{}", JSON.toJSONString(authUserBO));
+            log.info("AuthUserDomainServiceImpl.register authUserBO:{}", JSON.toJSONString(authUserBO));
         }
         AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOtoToUser(authUserBO);
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
@@ -52,12 +52,18 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
 //
 //    }
 //
-//    @Override
-//    public Boolean update(AuthUserBO subjectCategoryBO) {
-//        SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE.convertBoToCategory(subjectCategoryBO);
-//        int count = subjectCategoryService.update(subjectCategory);
-//        return count > 0;
-//    }
+    @Override
+    public Boolean update(AuthUserBO authUserBO) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthUserDomainServiceImpl.update authUserBO:{}", JSON.toJSONString(authUserBO));
+        }
+        AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOtoToUser(authUserBO);
+        authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
+        authUser.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
+        Integer count = authUserService.update(authUser);
+        // put it in the redis
+        return count > 0;
+    }
 //
 //    @Override
 //    public Boolean delete(AuthUserBO subjectCategoryBO) {

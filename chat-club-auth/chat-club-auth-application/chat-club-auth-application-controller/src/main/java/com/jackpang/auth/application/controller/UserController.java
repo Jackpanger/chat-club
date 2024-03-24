@@ -28,9 +28,7 @@ public class UserController {
             if (log.isInfoEnabled()) {
                 log.info("UserController.register authUserDTOh:{}", JSON.toJSONString(authUserDTO));
             }
-            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "Username is null");
-            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getEmail()), "Email is null");
-            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getPassword()), "Password is null");
+            checkUserInfo(authUserDTO);
             AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDOtoToBO(authUserDTO);
 
             return Result.ok(authUserDomainService.register(authUserBO));
@@ -40,12 +38,33 @@ public class UserController {
         }
     }
 
+    @RequestMapping("update")
+    public Result<Boolean> update(@RequestBody AuthUserDTO authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.update authUserDTOh:{}", JSON.toJSONString(authUserDTO));
+            }
+            checkUserInfo(authUserDTO);
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDOtoToBO(authUserDTO);
+            return Result.ok(authUserDomainService.update(authUserBO));
+        } catch (Exception e) {
+            log.error("UserController.update error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
+
+    private void checkUserInfo(@RequestBody AuthUserDTO authUserDTO) {
+        Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "Username is null");
+        Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getEmail()), "Email is null");
+        Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getPassword()), "Password is null");
+
+    }
 
     // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&password=123456
     @RequestMapping("doLogin")
     public SaResult doLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
         // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对
-        if("zhang".equals(username) && "123456".equals(password)) {
+        if ("zhang".equals(username) && "123456".equals(password)) {
             StpUtil.login(10001);
             SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
             // 第3步，返回给前端
@@ -59,5 +78,5 @@ public class UserController {
     public String isLogin() {
         return "当前会话是否登录：" + StpUtil.isLogin();
     }
-    
+
 }
