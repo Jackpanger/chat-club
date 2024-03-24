@@ -52,6 +52,19 @@ public class UserController {
             return Result.fail(e.getMessage());
         }
     }
+    @RequestMapping("delete")
+    public Result<Boolean> delete(@RequestBody AuthUserDTO authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.delete authUserDTOh:{}", JSON.toJSONString(authUserDTO));
+            }
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDOtoToBO(authUserDTO);
+            return Result.ok(authUserDomainService.delete(authUserBO));
+        } catch (Exception e) {
+            log.error("UserController.delete error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
 
     private void checkUserInfo(@RequestBody AuthUserDTO authUserDTO) {
         Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "Username is null");

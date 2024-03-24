@@ -64,13 +64,19 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         // put it in the redis
         return count > 0;
     }
-//
-//    @Override
-//    public Boolean delete(AuthUserBO subjectCategoryBO) {
-//        SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE.convertBoToCategory(subjectCategoryBO);
-//        subjectCategory.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
-//        int count = subjectCategoryService.update(subjectCategory);
-//        return count > 0;
-//    }
+
+    @Override
+    public Boolean delete(AuthUserBO authUserBO) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthUserDomainServiceImpl.delete authUserBO:{}", JSON.toJSONString(authUserBO));
+        }
+
+        AuthUser authUser = new AuthUser();
+        authUser.setId(authUserBO.getId());
+        authUser.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
+        Integer count = authUserService.update(authUser);
+        // put it in the redis
+        return count > 0;
+    }
 
 }

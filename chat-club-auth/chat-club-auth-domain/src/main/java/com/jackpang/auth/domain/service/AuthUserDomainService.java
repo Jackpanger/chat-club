@@ -27,6 +27,6 @@ public interface AuthUserDomainService {
      * @param authUserBO
      */
     Boolean update(AuthUserBO authUserBO);
-//
-//    Boolean delete(AuthUserBO authUserBO);
+
+    Boolean delete(AuthUserBO authUserBO);
 }
