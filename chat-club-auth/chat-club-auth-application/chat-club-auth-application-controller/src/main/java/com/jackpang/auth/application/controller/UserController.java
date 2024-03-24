@@ -10,9 +10,11 @@ import com.jackpang.auth.application.dto.AuthUserDTO;
 import com.jackpang.auth.common.entity.Result;
 import com.jackpang.auth.domain.entity.AuthUserBO;
 import com.jackpang.auth.domain.service.AuthUserDomainService;
+import com.jackpang.auth.infra.basic.service.AuthUserRoleService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

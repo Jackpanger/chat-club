@@ -16,12 +16,6 @@ public interface AuthUserDomainService {
      */
     Boolean register(AuthUserBO authUserBO);
 
-
-//    /**
-//     * Query primary category
-//     */
-//    List<AuthUserBO> queryCategory(AuthUserBO authUserBO);
-//
     /**
      * update
      * @param authUserBO
