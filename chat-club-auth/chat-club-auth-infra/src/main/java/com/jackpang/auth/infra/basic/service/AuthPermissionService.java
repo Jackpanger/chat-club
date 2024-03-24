@@ -2,6 +2,8 @@ package com.jackpang.auth.infra.basic.service;
 
 import com.jackpang.auth.infra.basic.entity.AuthPermission;
 
+import java.util.List;
+
 /**
  * (AuthPermission)表服务接口
  *

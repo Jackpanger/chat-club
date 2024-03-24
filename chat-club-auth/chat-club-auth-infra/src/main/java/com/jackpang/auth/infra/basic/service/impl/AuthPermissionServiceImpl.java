@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
 
+import java.util.List;
+
 /**
  * (AuthPermission)表服务实现类
  *
