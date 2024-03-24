@@ -30,7 +30,6 @@ import org.springframework.stereotype.Service;
 public class AuthRoleDomainServiceImpl implements AuthRoleDomainService {
     @Resource
     private AuthRoleService authRoleService;
-    private String salt = "jack";
 
     @Override
     public Boolean add(AuthRoleBO authRoleBO) {

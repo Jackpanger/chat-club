@@ -2,11 +2,16 @@ package com.jackpang.auth.application.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
+import com.jackpang.auth.application.convert.AuthPermissionDTOConverter;
 import com.jackpang.auth.application.convert.AuthRoleDTOConverter;
+import com.jackpang.auth.application.dto.AuthPermissionDTO;
 import com.jackpang.auth.application.dto.AuthRoleDTO;
 import com.jackpang.auth.common.entity.Result;
+import com.jackpang.auth.domain.entity.AuthPermissionBO;
 import com.jackpang.auth.domain.entity.AuthRoleBO;
+import com.jackpang.auth.domain.service.AuthPermissionDomainService;
 import com.jackpang.auth.domain.service.AuthRoleDomainService;
+import com.jackpang.auth.infra.basic.entity.AuthPermission;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,52 +24,52 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class PermissionController {
     @Resource
-    private AuthRoleDomainService authRoleDomainService;
+    private AuthPermissionDomainService authRoleDomainService;
 
     @RequestMapping("add")
-    public Result<Boolean> add(@RequestBody AuthRoleDTO authRoleDTO) {
+    public Result<Boolean> add(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {
-                log.info("RoleController.add authRoleDTO:{}", JSON.toJSONString(authRoleDTO));
+                log.info("PermissionController.add authPermission:{}", JSON.toJSONString(authPermissionDTO));
             }
-            Preconditions.checkArgument(!StringUtils.isBlank(authRoleDTO.getRoleName()), "Role name is null");
-            Preconditions.checkArgument(!StringUtils.isBlank(authRoleDTO.getRoleKey()), "Role key is null");
+            Preconditions.checkArgument(!StringUtils.isBlank(authPermissionDTO.getName()), "Permission name is null");
+            Preconditions.checkNotNull(authPermissionDTO.getParentId(), "Parent id is null");
 
-            AuthRoleBO authRoleBO = AuthRoleDTOConverter.INSTANCE.convertDOtoToBO(authRoleDTO);
+            AuthPermissionBO authPermissionBO = AuthPermissionDTOConverter.INSTANCE.convertDOtoToBO(authPermissionDTO);
 
-            return Result.ok(authRoleDomainService.add(authRoleBO));
+            return Result.ok(authRoleDomainService.add(authPermissionBO));
         } catch (Exception e) {
-            log.error("RoleController.add error:{}", e.getMessage(), e);
+            log.error("PermissionController.add error:{}", e.getMessage(), e);
             return Result.fail(e.getMessage());
         }
     }
 
     @RequestMapping("update")
-    public Result<Boolean> update(@RequestBody AuthRoleDTO authRoleDTO) {
+    public Result<Boolean> update(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {
-                log.info("RoleController.update authRoleDTO:{}", JSON.toJSONString(authRoleDTO));
+                log.info("PermissionController.update authPermission:{}", JSON.toJSONString(authPermissionDTO));
             }
-            Preconditions.checkNotNull(authRoleDTO.getId(), "ID is null");
-            AuthRoleBO authRoleBO = AuthRoleDTOConverter.INSTANCE.convertDOtoToBO(authRoleDTO);
-            return Result.ok(authRoleDomainService.update(authRoleBO));
+            Preconditions.checkNotNull(authPermissionDTO.getId(), "ID is null");
+            AuthPermissionBO authPermissionBO = AuthPermissionDTOConverter.INSTANCE.convertDOtoToBO(authPermissionDTO);
+            return Result.ok(authRoleDomainService.update(authPermissionBO));
         } catch (Exception e) {
-            log.error("RoleController.update error:{}", e.getMessage(), e);
+            log.error("PermissionController.update error:{}", e.getMessage(), e);
             return Result.fail(e.getMessage());
         }
     }
 
 
     @RequestMapping("delete")
-    public Result<Boolean> delete(@RequestBody AuthRoleDTO authRoleDTO) {
+    public Result<Boolean> delete(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
             if (log.isInfoEnabled()) {
-                log.info("RoleController.delete authRoleDTO:{}", JSON.toJSONString(authRoleDTO));
+                log.info("PermissionController.delete authPermissionDTO:{}", JSON.toJSONString(authPermissionDTO));
             }
-            AuthRoleBO authRoleBO = AuthRoleDTOConverter.INSTANCE.convertDOtoToBO(authRoleDTO);
-            return Result.ok(authRoleDomainService.delete(authRoleBO));
+            AuthPermissionBO authPermissionBO = AuthPermissionDTOConverter.INSTANCE.convertDOtoToBO(authPermissionDTO);
+            return Result.ok(authRoleDomainService.delete(authPermissionBO));
         } catch (Exception e) {
-            log.error("RoleController.delete error:{}", e.getMessage(), e);
+            log.error("PermissionController.delete error:{}", e.getMessage(), e);
             return Result.fail(e.getMessage());
         }
     }

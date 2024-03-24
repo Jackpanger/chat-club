@@ -30,6 +30,7 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
     public AuthPermission queryById(Long id) {
         return this.authPermissionDao.queryById(id);
     }
+
     /**
      * 查询数据
      *
@@ -48,9 +49,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission insert(AuthPermission authPermission) {
-        this.authPermissionDao.insert(authPermission);
-        return authPermission;
+    public Integer insert(AuthPermission authPermission) {
+        return this.authPermissionDao.insert(authPermission);
     }
 
     /**
@@ -60,9 +60,8 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
      * @return 实例对象
      */
     @Override
-    public AuthPermission update(AuthPermission authPermission) {
-        this.authPermissionDao.update(authPermission);
-        return this.queryById(authPermission.getId());
+    public Integer update(AuthPermission authPermission) {
+        return this.authPermissionDao.update(authPermission);
     }
 
     /**
