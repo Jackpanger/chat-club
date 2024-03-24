@@ -16,7 +16,7 @@ public interface AuthPermissionDomainService {
     Boolean add(AuthPermissionBO authPermissionBO);
     /**
      * update
-     * @param authRoleBO
+     * @param authPermissionBO
      */
     Boolean update(AuthPermissionBO authPermissionBO);
 

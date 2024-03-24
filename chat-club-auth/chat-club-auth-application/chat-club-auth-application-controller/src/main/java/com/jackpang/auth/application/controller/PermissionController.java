@@ -4,11 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jackpang.auth.application.convert.AuthPermissionDTOConverter;
 import com.jackpang.auth.application.convert.AuthRoleDTOConverter;
+import com.jackpang.auth.application.convert.AuthUserDTOConverter;
 import com.jackpang.auth.application.dto.AuthPermissionDTO;
 import com.jackpang.auth.application.dto.AuthRoleDTO;
+import com.jackpang.auth.application.dto.AuthUserDTO;
 import com.jackpang.auth.common.entity.Result;
 import com.jackpang.auth.domain.entity.AuthPermissionBO;
 import com.jackpang.auth.domain.entity.AuthRoleBO;
+import com.jackpang.auth.domain.entity.AuthUserBO;
 import com.jackpang.auth.domain.service.AuthPermissionDomainService;
 import com.jackpang.auth.domain.service.AuthRoleDomainService;
 import com.jackpang.auth.infra.basic.entity.AuthPermission;
@@ -58,7 +61,21 @@ public class PermissionController {
             return Result.fail(e.getMessage());
         }
     }
-
+    @RequestMapping("changeStatus")
+    public Result<Boolean> changeStatus(@RequestBody AuthPermissionDTO authPermissionDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.changeStatus authUserDTOh:{}", JSON.toJSONString(authPermissionDTO));
+            }
+            Preconditions.checkNotNull(authPermissionDTO.getId(), "ID is null");
+            Preconditions.checkNotNull(authPermissionDTO.getStatus(), "status is null");
+            AuthPermissionBO authPermissionBO = AuthPermissionDTOConverter.INSTANCE.convertDOtoToBO(authPermissionDTO);
+            return Result.ok(authRoleDomainService.update(authPermissionBO));
+        } catch (Exception e) {
+            log.error("UserController.changeStatus error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
 
     @RequestMapping("delete")
     public Result<Boolean> delete(@RequestBody AuthPermissionDTO authPermissionDTO) {

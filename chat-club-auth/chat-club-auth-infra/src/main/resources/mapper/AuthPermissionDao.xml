@@ -21,8 +21,20 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="AuthPermissionMap">
-        select
-id, name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, is_deleted
+        select id,
+               name,
+               parent_id,
+               type,
+               menu_url,
+               status,
+               `show`,
+               icon,
+               permission_key,
+               created_by,
+               created_time,
+               update_by,
+               update_time,
+               is_deleted
         from auth_permission
         where id = #{id}
     </select>
@@ -30,7 +42,8 @@ id, name, parent_id, type, menu_url, status, show, icon, permission_key, created
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AuthPermissionMap">
         select
-id, name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, is_deleted
+        id, name, parent_id, type, menu_url, status, `show`, icon, permission_key, created_by, created_time, update_by,
+        update_time, is_deleted
         from auth_permission
         <where>
             <if test="id != null">
@@ -49,10 +62,10 @@ id, name, parent_id, type, menu_url, status, show, icon, permission_key, created
                 and menu_url = #{menuUrl}
             </if>
             <if test="status != null">
-                and status = #{status}
+                and `status` = #{status}
             </if>
             <if test="show != null">
-                and show = #{show}
+                and `show` = #{show}
             </if>
             <if test="icon != null and icon != ''">
                 and icon = #{icon}
@@ -100,10 +113,10 @@ id, name, parent_id, type, menu_url, status, show, icon, permission_key, created
                 and menu_url = #{menuUrl}
             </if>
             <if test="status != null">
-                and status = #{status}
+                and `status` = #{status}
             </if>
             <if test="show != null">
-                and show = #{show}
+                and `show` = #{show}
             </if>
             <if test="icon != null and icon != ''">
                 and icon = #{icon}
@@ -131,38 +144,46 @@ id, name, parent_id, type, menu_url, status, show, icon, permission_key, created
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into auth_permission(name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, is_deleted)
-        values (#{name}, #{parentId}, #{type}, #{menuUrl}, #{status}, #{show}, #{icon}, #{permissionKey}, #{createdBy}, #{createdTime}, #{updateBy}, #{updateTime}, #{isDeleted})
+        insert into auth_permission(name, parent_id, type, menu_url, status, `show`, icon, permission_key, created_by,
+                                    created_time, update_by, update_time, is_deleted)
+        values (#{name}, #{parentId}, #{type}, #{menuUrl}, #{status}, #{show}, #{icon}, #{permissionKey}, #{createdBy},
+                #{createdTime}, #{updateBy}, #{updateTime}, #{isDeleted})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into auth_permission(name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, is_deleted)
+        insert into auth_permission(name, parent_id, type, menu_url, status, `show`, icon, permission_key, created_by,
+        created_time, update_by, update_time, is_deleted)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.menuUrl}, #{entity.status}, #{entity.show}, #{entity.icon}, #{entity.permissionKey}, #{entity.createdBy}, #{entity.createdTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.isDeleted})
+            (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.menuUrl}, #{entity.status}, #{entity.show},
+            #{entity.icon}, #{entity.permissionKey}, #{entity.createdBy}, #{entity.createdTime}, #{entity.updateBy},
+            #{entity.updateTime}, #{entity.isDeleted})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into auth_permission(name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, is_deleted)
+        insert into auth_permission(name, parent_id, type, menu_url, status, `show`, icon, permission_key, created_by,
+        created_time, update_by, update_time, is_deleted)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.menuUrl}, #{entity.status}, #{entity.show}, #{entity.icon}, #{entity.permissionKey}, #{entity.createdBy}, #{entity.createdTime}, #{entity.updateBy}, #{entity.updateTime}, #{entity.isDeleted})
+            (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.menuUrl}, #{entity.status}, #{entity.show},
+            #{entity.icon}, #{entity.permissionKey}, #{entity.createdBy}, #{entity.createdTime}, #{entity.updateBy},
+            #{entity.updateTime}, #{entity.isDeleted})
         </foreach>
         on duplicate key update
-name = values(name),
-parent_id = values(parent_id),
-type = values(type),
-menu_url = values(menu_url),
-status = values(status),
-show = values(show),
-icon = values(icon),
-permission_key = values(permission_key),
-created_by = values(created_by),
-created_time = values(created_time),
-update_by = values(update_by),
-update_time = values(update_time),
-is_deleted = values(is_deleted)
+        name = values(name),
+        parent_id = values(parent_id),
+        type = values(type),
+        menu_url = values(menu_url),
+        status = values(status),
+        `show` = values(show),
+        icon = values(icon),
+        permission_key = values(permission_key),
+        created_by = values(created_by),
+        created_time = values(created_time),
+        update_by = values(update_by),
+        update_time = values(update_time),
+        is_deleted = values(is_deleted)
     </insert>
 
     <!--通过主键修改数据-->
@@ -182,10 +203,10 @@ is_deleted = values(is_deleted)
                 menu_url = #{menuUrl},
             </if>
             <if test="status != null">
-                status = #{status},
+                `status` = #{status},
             </if>
             <if test="show != null">
-                show = #{show},
+                `show` = #{show},
             </if>
             <if test="icon != null and icon != ''">
                 icon = #{icon},
@@ -214,7 +235,9 @@ is_deleted = values(is_deleted)
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from auth_permission where id = #{id}
+        delete
+        from auth_permission
+        where id = #{id}
     </delete>
 
 </mapper>
