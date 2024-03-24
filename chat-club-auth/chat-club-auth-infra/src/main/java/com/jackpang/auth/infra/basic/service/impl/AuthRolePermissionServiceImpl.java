@@ -50,6 +50,11 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
         return this.authRolePermissionDao.insert(authRolePermission);
     }
 
+    @Override
+    public Integer insertBatch(List<AuthRolePermission> authRolePermissionList) {
+        return this.authRolePermissionDao.insertBatch(authRolePermissionList);
+    }
+
     /**
      * 修改数据
      *

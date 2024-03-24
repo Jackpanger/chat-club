@@ -36,6 +36,14 @@ public interface AuthRolePermissionService {
     Integer insert(AuthRolePermission authRolePermission);
 
     /**
+     * 新增数据
+     *
+     * @param authRolePermissionList 实例对象
+     * @return 实例对象
+     */
+    Integer insertBatch(List<AuthRolePermission> authRolePermissionList);
+
+    /**
      * 修改数据
      *
      * @param authRolePermission 实例对象

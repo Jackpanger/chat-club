@@ -13,6 +13,9 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * description: SubjectCategoryDomainServiceImpl
@@ -31,16 +34,15 @@ public class AuthRolePermissionDomainServiceImpl implements AuthRolePermissionDo
         if (log.isInfoEnabled()) {
             log.info("AuthRolePermissionDomainServiceImpl.add authRolePermissionBO:{}", JSON.toJSONString(authRolePermissionBO));
         }
+        List<AuthRolePermission> authRolePermissionList = new LinkedList<>();
         authRolePermissionBO.getPermissionIds().forEach(permissionId -> {
             AuthRolePermission authRolePermission = new AuthRolePermission();
             authRolePermission.setRoleId(authRolePermissionBO.getRoleId());
             authRolePermission.setPermissionId(permissionId);
             authRolePermission.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
-            authRolePermissionService.insert(authRolePermission);
+            authRolePermissionList.add(authRolePermission);
         });
-        AuthRolePermission authRolePermission = AuthRolePermissionBOConverter.INSTANCE.convertBOtoToUser(authRolePermissionBO);
-        authRolePermission.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
-        Integer count = authRolePermissionService.insert(authRolePermission);
+        Integer count = authRolePermissionService.insertBatch(authRolePermissionList);
         return count > 0;
     }
 //    @Override
