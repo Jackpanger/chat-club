@@ -21,7 +21,6 @@
     </modules>
 
     <properties>
-        <sa-token.version>1.37.0</sa-token.version>
     </properties>
 
     <dependencyManagement>
@@ -31,7 +30,11 @@
                 <artifactId>sa-token-spring-boot3-starter</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.jackpang</groupId>
                 <artifactId>chat-club-auth-common</artifactId>

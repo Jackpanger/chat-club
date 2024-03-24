@@ -31,8 +31,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
-
-
         <dependency>
             <groupId>com.jackpang</groupId>
             <artifactId>chat-club-application-controller</artifactId>

@@ -3,20 +3,45 @@ package com.jackpang.auth.application.controller;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.alibaba.fastjson.JSON;
+import com.google.common.base.Preconditions;
+import com.jackpang.auth.application.convert.AuthUserDTOConverter;
+import com.jackpang.auth.application.dto.AuthUserDTO;
+import com.jackpang.auth.common.entity.Result;
+import com.jackpang.auth.domain.entity.AuthUserBO;
+import com.jackpang.auth.domain.service.AuthUserDomainService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user/")
+@Slf4j
 public class UserController {
+    @Resource
+    private AuthUserDomainService authUserDomainService;
+
+    @RequestMapping("register")
+    public Result<Boolean> register(@RequestBody AuthUserDTO authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.register authUserDTOh:{}", JSON.toJSONString(authUserDTO));
+            }
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getUserName()), "Username is null");
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getEmail()), "Email is null");
+            Preconditions.checkArgument(!StringUtils.isBlank(authUserDTO.getPassword()), "Password is null");
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDOtoToBO(authUserDTO);
+
+            return Result.ok(authUserDomainService.register(authUserBO));
+        } catch (Exception e) {
+            log.error("UserController.register error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
+
 
     // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&password=123456
-    @RequestMapping("hello")
-    public String hello() {
-        return "Hello, Sa-Token!";
-    }
     @RequestMapping("doLogin")
     public SaResult doLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
         // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对
@@ -28,17 +53,6 @@ public class UserController {
         }
         return SaResult.error("登录失败");
     }
-    // 登录接口
-//    @RequestMapping("doLogin")
-//    public SaResult doLogin() {
-//        // 第1步，先登录上
-//        StpUtil.login(10001);
-//        // 第2步，获取 Token  相关参数
-//        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-//        // 第3步，返回给前端
-//        return SaResult.data(tokenInfo);
-//    }
-
 
     // 查询登录状态，浏览器访问： http://localhost:8081/user/isLogin
     @RequestMapping("isLogin")

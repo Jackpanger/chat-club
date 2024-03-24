@@ -13,5 +13,9 @@
             <groupId>com.jackpang</groupId>
             <artifactId>chat-club-auth-infra</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.jackpang</groupId>
+            <artifactId>chat-club-auth-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -39,6 +39,8 @@
         <log4j2.version>3.2.4</log4j2.version>
         <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
         <spring-cloud-alibaba-dependencies.version>2023.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
+        <sa-token.version>1.37.0</sa-token.version>
+
     </properties>
 
 
