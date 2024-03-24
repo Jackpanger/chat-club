@@ -52,6 +52,21 @@ public class UserController {
             return Result.fail(e.getMessage());
         }
     }
+    @RequestMapping("changeStatus")
+    public Result<Boolean> changeStatus(@RequestBody AuthUserDTO authUserDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("UserController.changeStatus authUserDTOh:{}", JSON.toJSONString(authUserDTO));
+            }
+            Preconditions.checkNotNull(authUserDTO.getId(), "ID is null");
+            Preconditions.checkNotNull(authUserDTO.getStatus(), "status is null");
+            AuthUserBO authUserBO = AuthUserDTOConverter.INSTANCE.convertDOtoToBO(authUserDTO);
+            return Result.ok(authUserDomainService.update(authUserBO));
+        } catch (Exception e) {
+            log.error("UserController.changeStatus error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
     @RequestMapping("delete")
     public Result<Boolean> delete(@RequestBody AuthUserDTO authUserDTO) {
         try {

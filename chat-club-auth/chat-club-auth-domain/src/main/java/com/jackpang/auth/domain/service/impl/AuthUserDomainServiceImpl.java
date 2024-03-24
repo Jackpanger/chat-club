@@ -1,5 +1,6 @@
 package com.jackpang.auth.domain.service.impl;
 
+import cn.dev33.satoken.secure.SaSecureUtil;
 import com.alibaba.fastjson.JSON;
 import com.jackpang.auth.common.enums.AuthUserStatusEnum;
 import com.jackpang.auth.common.enums.IsDeletedFlagEnum;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     @Resource
     private AuthUserService authUserService;
+    private String salt = "jack";
 
     @Override
     public Boolean register(AuthUserBO authUserBO) {
@@ -31,6 +33,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
             log.info("AuthUserDomainServiceImpl.register authUserBO:{}", JSON.toJSONString(authUserBO));
         }
         AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOtoToUser(authUserBO);
+        authUser.setPassword(SaSecureUtil.md5BySalt(authUser.getPassword(),salt));
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
         authUser.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         Integer count = authUserService.insert(authUser);
@@ -58,8 +61,6 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
             log.info("AuthUserDomainServiceImpl.update authUserBO:{}", JSON.toJSONString(authUserBO));
         }
         AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOtoToUser(authUserBO);
-        authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
-        authUser.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         Integer count = authUserService.update(authUser);
         // put it in the redis
         return count > 0;
