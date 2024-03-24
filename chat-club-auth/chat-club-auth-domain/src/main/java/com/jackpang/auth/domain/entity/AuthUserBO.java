@@ -10,7 +10,6 @@ import java.util.Date;
  * @since 2024-03-23 20:59:19
  */
 public class AuthUserBO implements Serializable {
-    private static final long serialVersionUID = -67608153231880663L;
 /**
      * 主键
      */

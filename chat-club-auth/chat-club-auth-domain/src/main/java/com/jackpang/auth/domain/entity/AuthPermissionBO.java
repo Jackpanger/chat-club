@@ -1,9 +1,9 @@
-package com.jackpang.auth.infra.basic.entity;
+package com.jackpang.auth.domain.entity;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (AuthPermission)实体类
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 2024-03-24 14:49:51
  */
 @Data
-public class AuthPermission implements Serializable {
+public class AuthPermissionBO implements Serializable {
 
     private Long id;
 /**
@@ -67,7 +67,6 @@ public class AuthPermission implements Serializable {
      * 是否被删除 0为删除 1已删除
      */
     private Integer isDeleted;
-
 
 }
 

@@ -1,4 +1,4 @@
-package com.jackpang.auth.infra.basic.dao;
+package com.jackpang.auth.infra.basic.mapper;
 
 import com.jackpang.auth.infra.basic.entity.AuthPermission;
 import org.apache.ibatis.annotations.Param;

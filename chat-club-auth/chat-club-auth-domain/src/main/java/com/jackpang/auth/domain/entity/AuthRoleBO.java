@@ -13,7 +13,6 @@ import java.util.Date;
  */
 @Data
 public class AuthRoleBO implements Serializable {
-    private static final long serialVersionUID = 228041602112560563L;
 
     private Long id;
     /**

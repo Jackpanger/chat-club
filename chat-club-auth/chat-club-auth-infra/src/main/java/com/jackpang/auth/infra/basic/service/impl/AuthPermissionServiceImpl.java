@@ -1,7 +1,7 @@
 package com.jackpang.auth.infra.basic.service.impl;
 
 import com.jackpang.auth.infra.basic.entity.AuthPermission;
-import com.jackpang.auth.infra.basic.dao.AuthPermissionDao;
+import com.jackpang.auth.infra.basic.mapper.AuthPermissionDao;
 import com.jackpang.auth.infra.basic.service.AuthPermissionService;
 import org.springframework.stereotype.Service;
 
