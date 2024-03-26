@@ -141,6 +141,17 @@
             </if>
         </where>
     </select>
+    <select id="queryByPermissionList" resultMap="AuthPermissionMap">
+        select
+        id, name, parent_id, type, menu_url, status, `show`, icon, permission_key, created_by, created_time, update_by,
+        update_time, is_deleted
+        from auth_permission
+        where id in
+        <foreach collection="list" item="permissionId" open="(" separator="," close=")">
+            #{permissionId}
+        </foreach>
+    </select>
+
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

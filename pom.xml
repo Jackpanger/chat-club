@@ -14,6 +14,7 @@
         <module>chat-club-subject</module>
         <module>chat-club-auth</module>
         <module>chat-club-gateway</module>
+        <module>chat-club-wechat</module>
     </modules>
 
     <properties>

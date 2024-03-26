@@ -30,7 +30,7 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
         String message = "";
         if (throwable instanceof SaTokenException) {
             code = 401;
-            message = " User no permission";
+            message = "User no permission";
         } else {
             code = 500;
             message = "Server busy";

@@ -2,22 +2,24 @@ package com.jackpang.auth.domain.service.impl;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
 import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import com.jackpang.auth.common.enums.AuthUserStatusEnum;
 import com.jackpang.auth.common.enums.IsDeletedFlagEnum;
 import com.jackpang.auth.domain.constants.AuthConstant;
 import com.jackpang.auth.domain.convert.AuthUserBOConverter;
 import com.jackpang.auth.domain.entity.AuthUserBO;
+import com.jackpang.auth.domain.redis.RedisUtil;
 import com.jackpang.auth.domain.service.AuthUserDomainService;
-import com.jackpang.auth.infra.basic.entity.AuthRole;
-import com.jackpang.auth.infra.basic.entity.AuthUser;
-import com.jackpang.auth.infra.basic.entity.AuthUserRole;
-import com.jackpang.auth.infra.basic.service.AuthRoleService;
-import com.jackpang.auth.infra.basic.service.AuthUserRoleService;
-import com.jackpang.auth.infra.basic.service.AuthUserService;
+import com.jackpang.auth.infra.basic.entity.*;
+import com.jackpang.auth.infra.basic.service.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -35,6 +37,15 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
     private AuthUserRoleService authUserRoleService;
     @Resource
     private AuthRoleService authRoleService;
+    @Resource
+    private AuthPermissionService authPermissionService;
+    @Resource
+    private AuthRolePermissionService authRolePermissionService;
+
+    @Resource
+    private RedisUtil redisUtil;
+    private String authPermissionPrefix = "auth.permission";
+    private String authRolePrefix = "auth.role";
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -59,6 +70,20 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         authUserRole.setIsDeleted(IsDeletedFlagEnum.NOT_DELETED.getCode());
         authUserRoleService.insert(authUserRole);
         // put it in the redis
+        String roleKey = redisUtil.buildKey(authRolePrefix, authUser.getUserName());
+        List<AuthRole> roleList = new LinkedList<>();
+        roleList.add(roleResult);
+        redisUtil.set(roleKey, new Gson().toJson(roleList));
+        AuthRolePermission authRolePermission = new AuthRolePermission();
+        authRolePermission.setRoleId(roleId);
+        List<AuthRolePermission> rolePermissionList = authRolePermissionService.queryByCondition(authRolePermission);
+
+        List<Long> permessionIdList = rolePermissionList.stream().map(AuthRolePermission::getPermissionId).collect(Collectors.toList());
+        List<AuthPermission> authPermissionList = authPermissionService.queryByPermissionList(permessionIdList);
+        String permissionKey = redisUtil.buildKey(authPermissionPrefix, authUser.getUserName());
+        redisUtil.set(permissionKey, new Gson().toJson(authPermissionList));
+
+
         return count > 0;
     }
 

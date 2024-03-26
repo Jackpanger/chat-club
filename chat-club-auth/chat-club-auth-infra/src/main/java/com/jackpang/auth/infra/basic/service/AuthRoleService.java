@@ -2,6 +2,8 @@ package com.jackpang.auth.infra.basic.service;
 
 import com.jackpang.auth.infra.basic.entity.AuthRole;
 
+import java.util.List;
+
 /**
  * (AuthRole)表服务接口
  *
@@ -43,4 +45,6 @@ public interface AuthRoleService {
     boolean deleteById(Long id);
 
     AuthRole queryByCondition(AuthRole authRole);
+
+    List<AuthRole> queryByRoleList(List<Long> roleIdList);
 }

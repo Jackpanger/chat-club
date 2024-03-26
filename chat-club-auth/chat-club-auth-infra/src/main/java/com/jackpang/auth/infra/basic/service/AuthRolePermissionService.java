@@ -1,5 +1,6 @@
 package com.jackpang.auth.infra.basic.service;
 
+import com.jackpang.auth.infra.basic.entity.AuthRole;
 import com.jackpang.auth.infra.basic.entity.AuthRolePermission;
 import java.util.List;
 
@@ -18,15 +19,7 @@ public interface AuthRolePermissionService {
      * @return 实例对象
      */
     AuthRolePermission queryById(Long id);
-    
-    /**
-     * 查询数据
-     *
-     * @param authRolePermission 实例对象
-     * @return 实例对象
-     */
-    List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePermission);
-    
+
     /**
      * 新增数据
      *
@@ -59,4 +52,5 @@ public interface AuthRolePermissionService {
      */
     boolean deleteById(Long id);
 
+    List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission);
 }

@@ -74,4 +74,11 @@ public class AuthPermissionServiceImpl implements AuthPermissionService {
     public boolean deleteById(Long id) {
         return this.authPermissionDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<AuthPermission> queryByPermissionList(List<Long> permessionIdList) {
+        return this.authPermissionDao.queryByPermissionList(permessionIdList);
+    }
+
+
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
 
+import java.util.List;
+
 /**
  * (AuthRole)表服务实现类
  *
@@ -65,5 +67,10 @@ public class AuthRoleServiceImpl implements AuthRoleService {
     @Override
     public AuthRole queryByCondition(AuthRole authRole) {
         return this.authRoleDao.queryAllByLimit(authRole);
+    }
+
+    @Override
+    public List<AuthRole> queryByRoleList(List<Long> roleIdList) {
+        return this.authRoleDao.queryByRoleList(roleIdList);
     }
 }

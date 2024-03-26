@@ -70,5 +70,7 @@ public interface AuthRoleDao {
     int deleteById(Long id);
 
     AuthRole queryAllByLimit(AuthRole authRole);
+
+    List<AuthRole> queryByRoleList(List<Long> roleIdList);
 }
 

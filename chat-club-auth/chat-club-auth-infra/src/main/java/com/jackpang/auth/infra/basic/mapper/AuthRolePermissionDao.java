@@ -1,5 +1,6 @@
 package com.jackpang.auth.infra.basic.mapper;
 
+import com.jackpang.auth.infra.basic.entity.AuthRole;
 import com.jackpang.auth.infra.basic.entity.AuthRolePermission;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;

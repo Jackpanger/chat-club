@@ -1,5 +1,5 @@
 server:
-  port: 4000
+  port: 4002
 minio:
   url: http://47.92.163.88:9000
   accessKey: minioadmin

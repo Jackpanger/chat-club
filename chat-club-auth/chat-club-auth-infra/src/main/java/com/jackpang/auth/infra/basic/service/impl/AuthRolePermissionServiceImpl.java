@@ -1,5 +1,6 @@
 package com.jackpang.auth.infra.basic.service.impl;
 
+import com.jackpang.auth.infra.basic.entity.AuthRole;
 import com.jackpang.auth.infra.basic.entity.AuthRolePermission;
 import com.jackpang.auth.infra.basic.mapper.AuthRolePermissionDao;
 import com.jackpang.auth.infra.basic.service.AuthRolePermissionService;
@@ -27,16 +28,6 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
     @Override
     public AuthRolePermission queryById(Long id) {
         return this.authRolePermissionDao.queryById(id);
-    }
-    /**
-     * 查询数据
-     *
-     * @param authRolePermission 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public List<AuthRolePermission> queryAllByLimit(AuthRolePermission authRolePermission) {
-        return this.authRolePermissionDao.queryAllByLimit(authRolePermission);
     }
 
     /**
@@ -76,4 +67,10 @@ public class AuthRolePermissionServiceImpl implements AuthRolePermissionService 
     public boolean deleteById(Long id) {
         return this.authRolePermissionDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<AuthRolePermission> queryByCondition(AuthRolePermission authRolePermission) {
+        return this.authRolePermissionDao.queryAllByLimit(authRolePermission);
+    }
+
 }
