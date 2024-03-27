@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.annotation.Resource;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -18,10 +20,6 @@ import java.util.List;
 public class FileController {
     @Resource
     private FileService fileService;
-//    @NacosValue(value = "${storage.service.type}", autoRefreshed = true)
-//    private String storageType;
-//    @Value(value = "${storage.service.type}")
-//    private String storageType;
 
     @RequestMapping("/testGetAllBuckets")
     @SneakyThrows
@@ -30,16 +28,14 @@ public class FileController {
         return allBucket.get(0);
     }
 
-//    @RequestMapping("/testNacos")
-//    public String testNacos() throws Exception {
-//        return storageType;
-//    }
-//    @Value(value = "${storage.service.type}")
-//    private String useLocalCache;
-//
-//    @RequestMapping("/test")
-//    public String test() {
-//        String useLocalCache1 = useLocalCache;
-//        return useLocalCache1;
-//    }
+    @RequestMapping("/getUrl")
+    public String getUrl(String bucketName, String objectName) throws Exception {
+        return fileService.getUrl(bucketName, objectName);
+    }
+
+    @RequestMapping("/upload")
+    @SneakyThrows
+    public String upload(MultipartFile uploadFile, String bucketName, String objectName) throws Exception {
+        return fileService.uploadFile(uploadFile, bucketName, objectName);
+    }
 }

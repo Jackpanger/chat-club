@@ -4,6 +4,7 @@ import com.jackpang.oss.entity.FileInfo;
 import com.jackpang.oss.util.MinioUtil;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -18,6 +19,10 @@ import java.util.List;
 public class MinioStorageAdapter implements StorageAdapter {
     @Resource
     private MinioUtil minioUtil;
+
+    @Value("${minio.url}")
+    private String url;
+
 
     @Override
     @SneakyThrows
@@ -64,5 +69,10 @@ public class MinioStorageAdapter implements StorageAdapter {
     @SneakyThrows
     public void deleteFile(String bucketName, String objectName) {
         minioUtil.deleteFile(bucketName,objectName);
+    }
+
+    @Override
+    public String getUrl(String bucketName, String objectName) {
+        return url + "/" + bucketName + "/" + objectName;
     }
 }

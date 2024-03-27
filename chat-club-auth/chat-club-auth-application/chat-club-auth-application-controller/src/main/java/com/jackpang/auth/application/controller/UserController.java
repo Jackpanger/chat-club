@@ -71,6 +71,20 @@ public class UserController {
         }
     }
 
+    @RequestMapping("logout")
+    public Result logout(@RequestParam("userName") String userName) {
+        try {
+            log.info("UserController.logout userName:{}", userName);
+
+            Preconditions.checkArgument(!StringUtils.isBlank(userName), "Username is null");
+            StpUtil.logout(userName);
+            return Result.ok();
+        } catch (Exception e) {
+            log.error("UserController.logout error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
+
     @RequestMapping("changeStatus")
     public Result<Boolean> changeStatus(@RequestBody AuthUserDTO authUserDTO) {
         try {
@@ -124,5 +138,4 @@ public class UserController {
     public String isLogin() {
         return "当前会话是否登录：" + StpUtil.isLogin();
     }
-
 }

@@ -28,4 +28,6 @@ public interface StorageAdapter {
     void deleteBucket(String bucketName);
 
     void deleteFile(String bucketName, String objectName);
+
+    String getUrl(String bucketName, String objectName);
 }
