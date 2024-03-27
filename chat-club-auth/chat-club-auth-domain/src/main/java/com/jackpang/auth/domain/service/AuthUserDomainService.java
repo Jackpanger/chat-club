@@ -1,5 +1,6 @@
 package com.jackpang.auth.domain.service;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import com.jackpang.auth.domain.entity.AuthUserBO;
 
  import java.util.List;
@@ -23,4 +24,6 @@ public interface AuthUserDomainService {
     Boolean update(AuthUserBO authUserBO);
 
     Boolean delete(AuthUserBO authUserBO);
+
+    SaTokenInfo doLogin(String validCode);
 }
