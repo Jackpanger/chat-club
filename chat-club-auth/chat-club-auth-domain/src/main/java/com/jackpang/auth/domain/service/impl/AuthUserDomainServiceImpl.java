@@ -4,6 +4,7 @@ import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.gson.Gson;
 import com.jackpang.auth.common.enums.AuthUserStatusEnum;
 import com.jackpang.auth.common.enums.IsDeletedFlagEnum;
@@ -57,7 +58,16 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         if (log.isInfoEnabled()) {
             log.info("AuthUserDomainServiceImpl.register authUserBO:{}", JSON.toJSONString(authUserBO));
         }
+        AuthUser existAuthUser = new AuthUser();
+        existAuthUser.setUserName(authUserBO.getUserName());
+        // check if the user exists
+        List<AuthUser> authUsers = authUserService.queryByCondition(existAuthUser);
+        if (!authUsers.isEmpty()) {
+            return true;
+        }
+
         AuthUser authUser = AuthUserBOConverter.INSTANCE.convertBOtoToUser(authUserBO);
+
         if (StringUtils.isNotBlank(authUser.getPassword()))
             authUser.setPassword(SaSecureUtil.md5BySalt(authUser.getPassword(), AuthConstant.SALT));
         authUser.setStatus(AuthUserStatusEnum.OPEN.getCode());
@@ -130,6 +140,17 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         StpUtil.login(openId);
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         return tokenInfo;
+    }
+
+    @Override
+    public AuthUserBO getUserInfo(AuthUserBO authUserBO) {
+        AuthUser authUser = new AuthUser();
+        authUser.setUserName(authUserBO.getUserName());
+        List<AuthUser> authUsers = authUserService.queryByCondition(authUser);
+        if (CollectionUtils.isEmpty(authUsers)) {
+            return new AuthUserBO();
+        }
+        return AuthUserBOConverter.INSTANCE.convertUserToBO(authUsers.get(0));
     }
 
 }

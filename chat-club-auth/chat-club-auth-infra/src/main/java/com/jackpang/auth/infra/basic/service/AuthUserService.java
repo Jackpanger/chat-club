@@ -2,6 +2,8 @@ package com.jackpang.auth.infra.basic.service;
 
 import com.jackpang.auth.infra.basic.entity.AuthUser;
 
+import java.util.List;
+
 /**
  * 用户信息表(AuthUser)表服务接口
  *
@@ -41,5 +43,7 @@ public interface AuthUserService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    List<AuthUser> queryByCondition(AuthUser authUser);
 
 }

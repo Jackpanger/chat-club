@@ -9,4 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface AuthUserBOConverter {
     AuthUserBOConverter INSTANCE = Mappers.getMapper(AuthUserBOConverter.class);
     AuthUser convertBOtoToUser(AuthUserBO authUserBO);
+
+    AuthUserBO convertUserToBO(AuthUser authUser);
 }

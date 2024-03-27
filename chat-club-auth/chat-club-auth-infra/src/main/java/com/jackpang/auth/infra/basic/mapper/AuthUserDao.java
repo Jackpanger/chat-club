@@ -69,5 +69,6 @@ public interface AuthUserDao {
      */
     int deleteById(Long id);
 
+    List<AuthUser> queryAllByLimit(AuthUser authUser);
 }
 
