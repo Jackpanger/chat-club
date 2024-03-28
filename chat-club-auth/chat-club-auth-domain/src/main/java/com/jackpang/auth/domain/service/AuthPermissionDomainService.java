@@ -3,6 +3,8 @@ package com.jackpang.auth.domain.service;
 import com.jackpang.auth.domain.entity.AuthPermissionBO;
 import com.jackpang.auth.domain.entity.AuthRoleBO;
 
+import java.util.List;
+
 /**
  * description: AuthUserDomainService
  * date: 3/10/24 3:12 AM
@@ -21,4 +23,6 @@ public interface AuthPermissionDomainService {
     Boolean update(AuthPermissionBO authPermissionBO);
 
     Boolean delete(AuthPermissionBO authPermissionBO);
+
+    List<String> getPermission(String userName);
 }

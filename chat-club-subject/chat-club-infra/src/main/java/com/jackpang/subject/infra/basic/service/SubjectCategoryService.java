@@ -48,4 +48,6 @@ public interface SubjectCategoryService {
      * Query primary category
      */
     List<SubjectCategory> queryCategory(SubjectCategory subjectCategory);
+
+    Integer querySubjectCount(Long id);
 }

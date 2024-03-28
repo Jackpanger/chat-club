@@ -3,7 +3,9 @@ package com.jackpang.subject.application.controller;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jackpang.subject.application.convert.SubjectCategoryDTOConverter;
+import com.jackpang.subject.application.convert.SubjectLabelDTOConverter;
 import com.jackpang.subject.application.dto.SubjectCategoryDTO;
+import com.jackpang.subject.application.dto.SubjectLabelDTO;
 import com.jackpang.subject.common.entity.Result;
 import com.jackpang.subject.domain.entity.SubjectCategoryBO;
 import com.jackpang.subject.domain.service.SubjectCategoryDomainService;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.annotation.Resource;
+
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -110,6 +114,29 @@ public class SubjectCategoryController {
         } catch (Exception e) {
             log.error("SubjectCategoryController.update error:{}", e.getMessage(), e);
             return Result.fail("Delete fails");
+        }
+    }
+
+    @PostMapping("/queryCategoryAndLabel")
+    public Result<List<SubjectCategoryDTO>> queryCategoryAndLabel(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.queryCategoryAndLabel subjectCategoryDTO:{}", JSON.toJSONString(subjectCategoryDTO));
+            }
+            Preconditions.checkNotNull(subjectCategoryDTO.getId(), "Id is null");
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertDOtoToBO(subjectCategoryDTO);
+            List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategoryAndLabel(subjectCategoryBO);
+            List<SubjectCategoryDTO> dtoList = new LinkedList<>();
+            subjectCategoryBOList.forEach(bo->{
+                SubjectCategoryDTO dto = SubjectCategoryDTOConverter.INSTANCE.convertBOtoToDTO(bo);
+                List<SubjectLabelDTO> labelDTOList = SubjectLabelDTOConverter.INSTANCE.convertBOListToDTOList(bo.getLabelBOList());
+                dto.setLabelDTOList(labelDTOList);
+                dtoList.add(dto);
+            });
+            return Result.ok(dtoList);
+        } catch (Exception e) {
+            log.error("SubjectCategoryController.queryCategoryAndLabel error:{}", e.getMessage(), e);
+            return Result.fail("Query fails");
         }
     }
 

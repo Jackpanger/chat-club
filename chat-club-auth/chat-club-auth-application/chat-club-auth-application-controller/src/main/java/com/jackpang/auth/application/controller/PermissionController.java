@@ -12,6 +12,7 @@ import com.jackpang.auth.common.entity.Result;
 import com.jackpang.auth.domain.entity.AuthPermissionBO;
 import com.jackpang.auth.domain.entity.AuthRoleBO;
 import com.jackpang.auth.domain.entity.AuthUserBO;
+import com.jackpang.auth.domain.redis.RedisUtil;
 import com.jackpang.auth.domain.service.AuthPermissionDomainService;
 import com.jackpang.auth.domain.service.AuthRoleDomainService;
 import com.jackpang.auth.infra.basic.entity.AuthPermission;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -61,6 +63,7 @@ public class PermissionController {
             return Result.fail(e.getMessage());
         }
     }
+
     @RequestMapping("changeStatus")
     public Result<Boolean> changeStatus(@RequestBody AuthPermissionDTO authPermissionDTO) {
         try {
@@ -87,6 +90,18 @@ public class PermissionController {
             return Result.ok(authRoleDomainService.delete(authPermissionBO));
         } catch (Exception e) {
             log.error("PermissionController.delete error:{}", e.getMessage(), e);
+            return Result.fail(e.getMessage());
+        }
+    }
+
+    @RequestMapping("getPermission")
+    public Result<Boolean> getPermission(@RequestParam("userName") String userName) {
+        try {
+            log.info("PermissionController.getPermission userName:{}", userName);
+            Preconditions.checkArgument(!StringUtils.isBlank(userName), "userName is null");
+            return Result.ok(authRoleDomainService.getPermission(userName));
+        } catch (Exception e) {
+            log.error("PermissionController.getPermission error:{}", e.getMessage(), e);
             return Result.fail(e.getMessage());
         }
     }

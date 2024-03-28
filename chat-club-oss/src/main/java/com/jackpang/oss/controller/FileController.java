@@ -1,8 +1,10 @@
 package com.jackpang.oss.controller;
 
 import com.jackpang.oss.adapter.FileService;
+import com.jackpang.oss.entity.Result;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.annotation.Resource;
@@ -34,8 +36,11 @@ public class FileController {
     }
 
     @RequestMapping("/upload")
-    @SneakyThrows
-    public String upload(MultipartFile uploadFile, String bucketName, String objectName) throws Exception {
-        return fileService.uploadFile(uploadFile, bucketName, objectName);
+    public Result upload(MultipartFile uploadFile,
+                         String bucketName,
+                         String objectName) throws Exception {
+
+        String url = fileService.uploadFile(uploadFile, bucketName, objectName);
+        return Result.ok(url);
     }
 }

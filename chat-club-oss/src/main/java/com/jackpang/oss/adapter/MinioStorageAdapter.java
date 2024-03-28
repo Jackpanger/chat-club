@@ -35,9 +35,9 @@ public class MinioStorageAdapter implements StorageAdapter {
     public void uploadFile(MultipartFile uploadFile, String bucketName, String objectName) {
         minioUtil.createBucket(bucketName);
         if (objectName != null) {
-            minioUtil.uploadFile(uploadFile.getInputStream(), bucketName, objectName + "/" + uploadFile.getName());
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucketName, objectName + "/" + uploadFile.getOriginalFilename());
         } else {
-            minioUtil.uploadFile(uploadFile.getInputStream(), bucketName, uploadFile.getName());
+            minioUtil.uploadFile(uploadFile.getInputStream(), bucketName, uploadFile.getOriginalFilename());
         }
     }
 
