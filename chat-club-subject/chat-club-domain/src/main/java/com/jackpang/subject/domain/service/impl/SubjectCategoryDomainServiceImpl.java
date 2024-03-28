@@ -18,11 +18,13 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.concurrent.FutureTask;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 /**
@@ -96,25 +98,20 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
             log.info("SubjectCategoryDomainServiceImpl.queryCategoryAndLabel subjectCategoryList:{}", JSON.toJSONString(subjectCategoryList));
         }
         List<SubjectCategoryBO> categoryBOList = SubjectCategoryConverter.INSTANCE.convertCategoryListToBoList(subjectCategoryList);
-        // get all label under the category
-        List<FutureTask<Map<Long, List<SubjectLabelBO>>>> futureTaskList = new LinkedList<>();
 
         Map<Long, List<SubjectLabelBO>> map = new HashMap<>();
-        categoryBOList.forEach(category -> {
-            FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask = new FutureTask<>(() -> getLabelBOList(category));
-            futureTaskList.add(futureTask);
-            labelThreadPool.submit(futureTask);
-        });
-        for (FutureTask<Map<Long, List<SubjectLabelBO>>> futureTask : futureTaskList) {
-            Map<Long, List<SubjectLabelBO>> resultMap = futureTask.get();
-            if (CollectionUtils.isEmpty(resultMap)) {
-                continue;
+        List<CompletableFuture<Map<Long, List<SubjectLabelBO>>>> completableFutureList = categoryBOList.stream().map(category ->
+                CompletableFuture.supplyAsync(() -> getLabelBOList(category), labelThreadPool)
+        ).collect(Collectors.toList());
+        completableFutureList.forEach(future->{
+            try {
+                Map<Long, List<SubjectLabelBO>> resultMap = future.get();
+                map.putAll(resultMap);
+            } catch (Exception e) {
+                log.error("queryCategoryAndLabel error",e);
             }
-            map.putAll(resultMap);
-        }
-        categoryBOList.forEach(categoryBO -> {
-            categoryBO.setLabelBOList(map.get(categoryBO.getId()));
         });
+        categoryBOList.forEach(categoryBO -> categoryBO.setLabelBOList(map.get(categoryBO.getId())));
         return categoryBOList;
     }
 
